@@ -7,6 +7,6 @@ const Header = () => {
         <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt=""></img>
       </header>
     );
-}
+};
 
 export default Header;
