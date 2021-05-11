@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./profile.module.css";
 
 export const Profile = () => {
     return (
-        <div className="content">
+        <div className={styles.content}>
             <div>
                 <img
                     src="https://cdn.dribbble.com/users/1869172/screenshots/15627559/media/b77ddf94aabcff17cfb391e9dd8676aa.png?compress=1&resize=1000x750"
@@ -20,8 +21,8 @@ export const Profile = () => {
                 My posts
                 <div>New posts</div>
             </div>
-            <div>post1</div>
-            <div>post2</div>
+            <div className={styles.item}>post1</div>
+            <div className={styles.item}>post2</div>
         </div>
     );
 }
