@@ -8,8 +8,8 @@ export const MyPosts = () => {
             My posts
             <div>New posts</div>
             <div className={styles.posts}>
-                <Post />
-                <Post />
+                <Post message="Hi, how are you?" like="15"/>
+                <Post message="It's my first post" like="20"/>
             </div>
         </div>
     );
