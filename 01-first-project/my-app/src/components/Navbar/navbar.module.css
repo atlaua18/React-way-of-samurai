@@ -1,8 +1,18 @@
 .nav {
     grid-area: n;
     background-color: #f8edeb;
+    padding: 20px;
 }
 
-.item {
-  color: aliceblue;
+.item a {
+  text-decoration: none;
+  color: black;
+}
+
+.item a.active {
+  color: cornflowerblue;
+}
+
+.item a:hover {
+  color: rgb(44, 81, 150);
 }
