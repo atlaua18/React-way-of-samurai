@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./post.module.css";
 
-export const Post = (props: { message: string; like: string }) => {
+export const Post = (props: { message: string; likesCount: string }) => {
     return (
         <div>
             <div className={styles.item}>
@@ -12,7 +12,7 @@ export const Post = (props: { message: string; like: string }) => {
                 {props.message}
                 <div>
                     <span className={styles.likes}>
-                        {props.like}
+                        {props.likesCount} 
                         <img
                             src="https://p7.hiclipart.com/preview/540/262/503/social-media-facebook-like-button-heart-emoticon-facebook-live-love-png.jpg"
                             alt=""

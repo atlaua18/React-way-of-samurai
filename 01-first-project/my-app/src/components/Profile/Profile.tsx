@@ -4,7 +4,7 @@ import styles from "./profile.module.css";
 
 export const Profile = () => {
     return (
-        <div className={styles.content}>
+        <div>
             <div>
                 <img
                     src="https://cdn.dribbble.com/users/1869172/screenshots/15627559/media/b77ddf94aabcff17cfb391e9dd8676aa.png?compress=1&resize=1000x750"
