@@ -4,7 +4,7 @@ import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 
 export const Profile = (props: {
     state: {
-            postsData: { id: number; message: string; likesCount: number }[],
+        postsData: { id: number; message: string; likesCount: number }[];
     };
 }) => {
     return (

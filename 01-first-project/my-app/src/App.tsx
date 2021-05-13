@@ -10,14 +10,14 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 
 const App = (props: {
-    appState: { 
+    appState: {
         profilePage: {
-            postsData: { id: number; message: string; likesCount: number }[],
-        }
+            postsData: { id: number; message: string; likesCount: number }[];
+        };
         MessagePage: {
-            dialogsData: { name: string; id: number }[],
-            messagesData: { message: string }[],
-        }
+            dialogsData: { id: number, name: string, avatar: string }[];
+            messagesData: { message: string }[];
+        };
     };
 }) => {
     return (
@@ -35,9 +35,8 @@ const App = (props: {
                     <Route
                         path="/dialogs"
                         render={() => (
-                            <Dialogs state={props.appState.MessagePage}
-                                // dialogsData={props.appState.dialogsData}
-                                // messagesData={props.appState.messagesData}
+                            <Dialogs
+                                state={props.appState.MessagePage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
                             />
                         )}
                     />

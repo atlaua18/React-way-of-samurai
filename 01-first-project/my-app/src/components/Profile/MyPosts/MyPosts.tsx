@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
 
-export const MyPosts = (props: { postsData: { id: number; message: string; likesCount: number }[] }) => {
-    
+export const MyPosts = (props: {
+    postsData: { id: number; message: string; likesCount: number }[];
+}) => {
     let postsElements = props.postsData.map((p) => (
         <Post message={p.message} likesCount={p.likesCount} />
     ));

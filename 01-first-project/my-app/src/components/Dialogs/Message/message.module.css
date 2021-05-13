@@ -1,3 +1,7 @@
 .message {
     padding: 5px;
 }
+
+.message:nth-child(2n) {
+    text-align: right;
+}
