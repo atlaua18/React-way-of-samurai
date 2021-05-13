@@ -10,11 +10,16 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 
 const App = (props: {
-    postsData: { id: number; message: string; likesCount: number }[];
-    dialogsData: { name: string; id: number }[];
-    messagesData: { message: string }[];
+    appState: { 
+        profilePage: {
+            postsData: { id: number; message: string; likesCount: number }[],
+        }
+        MessagePage: {
+            dialogsData: { name: string; id: number }[],
+            messagesData: { message: string }[],
+        }
+    };
 }) => {
-
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -23,14 +28,16 @@ const App = (props: {
                 <div className="app-wrapper-content">
                     <Route
                         path="/profile"
-                        render={() => <Profile postsData={props.postsData} />}
+                        render={() => (
+                            <Profile state={props.appState.profilePage} />
+                        )}
                     />
                     <Route
                         path="/dialogs"
                         render={() => (
-                            <Dialogs
-                                dialogsData={props.dialogsData}
-                                messagesData={props.messagesData}
+                            <Dialogs state={props.appState.MessagePage}
+                                // dialogsData={props.appState.dialogsData}
+                                // messagesData={props.appState.messagesData}
                             />
                         )}
                     />

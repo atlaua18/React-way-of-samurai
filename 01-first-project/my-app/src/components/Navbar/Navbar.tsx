@@ -6,19 +6,29 @@ export const Navbar = () => {
     return (
         <nav className={styles.nav}>
             <div className={styles.item}>
-                <NavLink to="/profile" activeClassName={styles.active}>Profile</NavLink>
+                <NavLink to="/profile" activeClassName={styles.active}>
+                    Profile
+                </NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to="/dialogs" activeClassName={styles.active}>Messages</NavLink>
+                <NavLink to="/dialogs" activeClassName={styles.active}>
+                    Messages
+                </NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to="/news" activeClassName={styles.active}>News</NavLink>
+                <NavLink to="/news" activeClassName={styles.active}>
+                    News
+                </NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to="/music" activeClassName={styles.active}>Music</NavLink>
+                <NavLink to="/music" activeClassName={styles.active}>
+                    Music
+                </NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to="/settings" activeClassName={styles.active}>Settings</NavLink>
+                <NavLink to="/settings" activeClassName={styles.active}>
+                    Settings
+                </NavLink>
             </div>
         </nav>
     );
