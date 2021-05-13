@@ -4,7 +4,11 @@ import { Post } from "./Post/Post";
 
 export const MyPosts = (props: {
     postsData: { id: number; message: string; likesCount: number }[];
+    addPost: (postText: string) => {
+        newPost: { id: number; message: string; likesCount: number },
+    };
 }) => {
+
     let postsElements = props.postsData.map((p) => (
         <Post message={p.message} likesCount={p.likesCount} />
     ));
@@ -12,8 +16,9 @@ export const MyPosts = (props: {
     let newPostElement: any = React.createRef<HTMLDivElement>();
 
     let addPost = () => {
+        debugger;
         let text = newPostElement.current.value;
-        alert(text);
+        props.addPost(text);
     };
 
     return (

@@ -19,6 +19,9 @@ const App = (props: {
             messagesData: { message: string }[];
         };
     };
+    addPost: (postText: string) => {
+        newPost: { id: number; message: string; likesCount: number },
+    };
 }) => {
     return (
         <BrowserRouter>
@@ -29,7 +32,7 @@ const App = (props: {
                     <Route
                         path="/profile"
                         render={() => (
-                            <Profile state={props.appState.profilePage} />
+                            <Profile state={props.appState.profilePage} addPost={props.addPost}/>
                         )}
                     />
                     <Route

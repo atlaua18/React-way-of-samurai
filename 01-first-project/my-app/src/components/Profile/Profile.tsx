@@ -6,11 +6,14 @@ export const Profile = (props: {
     state: {
         postsData: { id: number; message: string; likesCount: number }[];
     };
+    addPost: (postText: string) => {
+        newPost: { id: number; message: string; likesCount: number },
+    };
 }) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postsData={props.state.postsData} />
+            <MyPosts postsData={props.state.postsData} addPost={props.addPost}/>
         </div>
     );
 };
