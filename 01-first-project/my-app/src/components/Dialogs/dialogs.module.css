@@ -10,3 +10,13 @@
 .messages {
     padding: 15px;
 }
+
+.createMessage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.typeMessage {
+    width: 80%;
+}
