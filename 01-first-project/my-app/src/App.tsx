@@ -8,19 +8,13 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
+import { IPost } from "./interfaces/IPost";
+import { IAppState } from "./interfaces/IAppState";
 
 const App = (props: {
-    appState: {
-        profilePage: {
-            postsData: { id: number; message: string; likesCount: number }[];
-        };
-        MessagePage: {
-            dialogsData: { id: number, name: string, avatar: string }[];
-            messagesData: { message: string }[];
-        };
-    };
-    addPost: (postText: string) => {
-        newPost: { id: number; message: string; likesCount: number },
+    appState: IAppState,
+    addPost: (postText: any) => {
+        newPost: IPost,
     };
 }) => {
     return (
@@ -39,7 +33,7 @@ const App = (props: {
                         path="/dialogs"
                         render={() => (
                             <Dialogs
-                                state={props.appState.MessagePage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
+                                state={props.appState.messagePage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
                             />
                         )}
                     />

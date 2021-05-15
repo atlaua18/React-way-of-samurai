@@ -1,11 +1,15 @@
-let state = {
+import { IAppState } from "../interfaces/IAppState";
+import { IPost } from "../interfaces/IPost";
+import { rerenderEntireTree } from "../render";
+
+let state: IAppState = {
     profilePage: {
         postsData: [
             { id: 1, message: "Hi, how are you?", likesCount: 15 },
             { id: 2, message: "It's my first post", likesCount: 20 },
         ],
     },
-    MessagePage: {
+    messagePage: {
         dialogsData: [
             { id: 1, name: "Nastya", avatar: "https://cdn.dribbble.com/users/4051260/screenshots/15643099/media/610a2b7dc0d934af453f846d349292be.jpeg?compress=1&resize=1000x750" },
             { id: 2, name: "Vitaliq", avatar: "https://cdn.dribbble.com/users/984375/screenshots/15647057/media/0c127c5f15c5778d36f5ace71760f579.jpg?compress=1&resize=1000x750" },
@@ -20,14 +24,15 @@ let state = {
     },
 };
 
-export let addPost = (postText: any) => {
-    let newPost = {
+export let addPost = (postText: string) => {
+    let newPost: IPost = {
         id: 3, 
         message: postText,
         likesCount: 0,
     };
-
     state.profilePage.postsData.push(newPost);
+
+    rerenderEntireTree(state);
 }
 
 export default state;

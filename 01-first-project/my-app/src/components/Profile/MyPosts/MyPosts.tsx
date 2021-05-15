@@ -1,24 +1,22 @@
 import React from "react";
+import { IPostProps } from "../../../interfaces/IPostProps";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
 
-export const MyPosts = (props: {
-    postsData: { id: number; message: string; likesCount: number }[];
-    addPost: (postText: string) => {
-        newPost: { id: number; message: string; likesCount: number },
-    };
-}) => {
+export const MyPosts = (props: IPostProps) => {
 
     let postsElements = props.postsData.map((p) => (
         <Post message={p.message} likesCount={p.likesCount} />
     ));
 
-    let newPostElement: any = React.createRef<HTMLDivElement>();
+    let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        debugger;
-        let text = newPostElement.current.value;
+        let text: string = newPostElement?.current?.value ?? "";
         props.addPost(text);
+        if(newPostElement.current !== null) {
+            newPostElement.current.value = "";
+        }
     };
 
     return (

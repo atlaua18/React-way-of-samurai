@@ -1,12 +1,14 @@
 import React from "react";
+import { IDialogsData } from "../../interfaces/IDialogsData";
+import { IMessageData } from "../../interfaces/IMessageData";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
 
 export const Dialogs = (props: {
     state: {
-        dialogsData: { id: number; name: string; avatar: string }[];
-        messagesData: { message: string }[];
+        dialogsData: IDialogsData[];
+        messagesData: IMessageData[];
     };
 }) => {
     let dialogElements = props.state.dialogsData.map((d) => (
@@ -17,10 +19,10 @@ export const Dialogs = (props: {
         <Message message={m.message} />
     ));
 
-    let newMessageElement: any = React.createRef();
+    let newMessageElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 
     let SendMessage = () => {
-        let text = newMessageElement.current.value;
+        let text: string = newMessageElement?.current?.value ?? "";
         alert(text);
     }
 
