@@ -12,11 +12,12 @@ export const MyPosts = (props: IMyPostsProps) => {
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
+        props.addPost();
+    };
+
+    let onPostChange = () => {
         let text: string = newPostElement?.current?.value ?? "";
-        props.addPost(text);
-        if(newPostElement.current !== null) {
-            newPostElement.current.value = "";
-        }
+        props.updateNewPostText(text);
     };
 
     return (
@@ -24,7 +25,7 @@ export const MyPosts = (props: IMyPostsProps) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
@@ -32,7 +33,6 @@ export const MyPosts = (props: IMyPostsProps) => {
             </div>
             <div className={styles.posts}>
                 {postsElements}
-                {/*<Post message={p.message} likesCount={p.likesCount} />*/}
             </div>
         </div>
     );
