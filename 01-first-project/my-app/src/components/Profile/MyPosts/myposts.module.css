@@ -5,3 +5,8 @@
 .posts {
     margin-top: 15px;
 }
+
+textarea {
+    width: 50%;
+    resize: none;
+}

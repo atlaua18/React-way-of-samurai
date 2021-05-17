@@ -14,9 +14,10 @@ import { IMessagesData } from "./interfaces/IMessagesData";
 
 const App = (props: {
     appState: IAppState,
-    addPost: (postText: any) => {
+    addPost: () => {
         newPost: IPost,
     },
+    updateNewPostText: (newText: string) => {},
     newMessage: (messageText: string) => {
         newMessage: IMessagesData,
     },
@@ -30,7 +31,9 @@ const App = (props: {
                     <Route
                         path="/profile"
                         render={() => (
-                            <Profile state={props.appState.profilePage} addPost={props.addPost}/>
+                            <Profile profilePage={props.appState.profilePage} 
+                            addPost={props.addPost}
+                            updateNewPostText={props.updateNewPostText}/>
                         )}
                     />
                     <Route

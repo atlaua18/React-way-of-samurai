@@ -2,5 +2,7 @@ import { IPost } from "./IPost";
 
 export interface IMyPostsProps {
     postsData: IPost[];
-    addPost(postText: string): { newPost: IPost };
+    addPost(): { newPost: IPost };
+    newPostText: string;
+    updateNewPostText(newText: string): {};
 }
