@@ -1,13 +1,28 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import "./index.css";
-// import App from "./App.tsx";
+import App from "./App.tsx";
 // import reportWebVitals from "./reportWebVitals";
 import state from "./redux/state";
-// import { addPost } from "./redux/state";
-import { rerenderEntireTree } from "./render";
+import { addPost } from "./redux/state";
+// import { rerenderEntireTree } from "./render";
+import { sendMessage } from "./redux/state";
+import { updateNewPostText } from "./redux/state";
+import { subscribe } from "./redux/state";
+
+
+let rerenderEntireTree = (state) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App appState={state} addPost={addPost} updateNewPostText={updateNewPostText} newMessage={sendMessage}/> {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}
+        </React.StrictMode>,
+        document.getElementById("root")
+    );
+};
 
 rerenderEntireTree(state);
+
+subscribe(rerenderEntireTree); 
  
     // ReactDOM.render(
     //     <React.StrictMode>

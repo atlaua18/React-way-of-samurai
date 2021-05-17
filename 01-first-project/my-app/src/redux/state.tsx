@@ -1,7 +1,11 @@
 import { IAppState } from "../interfaces/IAppState";
 import { IMessagesData } from "../interfaces/IMessagesData";
 import { IPost } from "../interfaces/IPost";
-import { rerenderEntireTree } from "../render";
+// import { rerenderEntireTree } from "../render";
+
+let rerenderEntireTree = (s: IAppState) => {
+    console.log("state change")
+};
 
 let state: IAppState = {
     profilePage: {
@@ -38,8 +42,7 @@ let state: IAppState = {
     },
 };
 
-export let addPost = () => {
-    //postText: string
+export const addPost = () => {
     let newPost: IPost = {
         id: 3,
         message: state.profilePage.newPostText,
@@ -50,12 +53,12 @@ export let addPost = () => {
     rerenderEntireTree(state);
 };
 
-export let updateNewPostText = (newText: string) => {
+export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 };
 
-export let sendMessage = (messageText: string) => {
+export const sendMessage = (messageText: string) => {
     let newMessage: IMessagesData = {
         id: 5,
         message: messageText,
@@ -64,5 +67,9 @@ export let sendMessage = (messageText: string) => {
 
     rerenderEntireTree(state);
 };
+
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer; //паттерн Наблюдатель(observer)
+}
 
 export default state;
