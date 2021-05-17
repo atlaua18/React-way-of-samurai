@@ -1,4 +1,5 @@
 import { IAppState } from "../interfaces/IAppState";
+import { IMessagesData } from "../interfaces/IMessagesData";
 import { IPost } from "../interfaces/IPost";
 import { rerenderEntireTree } from "../render";
 
@@ -32,6 +33,16 @@ export let addPost = (postText: string) => {
     };
     state.profilePage.postsData.push(newPost);
 
+    rerenderEntireTree(state);
+};
+
+export let sendMessage = (messageText: string) => {
+    let newMessage: IMessagesData = {
+        id: 5,
+        message: messageText,
+    }
+    state.messagePage.messagesData.push(newMessage);
+    
     rerenderEntireTree(state);
 }
 

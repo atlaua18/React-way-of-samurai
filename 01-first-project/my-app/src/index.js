@@ -8,7 +8,7 @@ import state from "./redux/state";
 import { rerenderEntireTree } from "./render";
 
 rerenderEntireTree(state);
-
+ 
     // ReactDOM.render(
     //     <React.StrictMode>
     //         <App appState={state} addPost={addPost} /> {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}

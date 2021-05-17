@@ -1,7 +1,7 @@
 import { IDialogsData } from "./IDialogsData";
-import { IMessageData } from "./IMessageData";
+import { IMessagesData } from "./IMessagesData";
 
 export interface IMessagePage {
     dialogsData: IDialogsData[];
-    messagesData: IMessageData[];
+    messagesData: IMessagesData[];
 }

@@ -5,11 +5,12 @@ import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals";
 // import state from "./redux/state";
 import { addPost } from "./redux/state";
+import { sendMessage } from "./redux/state";
 
 export let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App appState={state} addPost={addPost} /> {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}
+            <App appState={state} addPost={addPost} newMessage={sendMessage}/> {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}
         </React.StrictMode>,
         document.getElementById("root")
     );

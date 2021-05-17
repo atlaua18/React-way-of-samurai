@@ -7,3 +7,5 @@ export const Message = (props: { message: string }) => {
         </div>
     );
 };
+
+// ТУТ СОЗДАЕТСЯ ВСЕГДА КАЖДЫЙ РАЗ НОВОЕ СООБЩЕНИЕ (ОДНО)

@@ -1,9 +1,9 @@
 import React from "react";
-import { IPostProps } from "../../../interfaces/IPostProps";
+import { IMyPostsProps } from "../../../interfaces/IMyPostsProps";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
 
-export const MyPosts = (props: IPostProps) => {
+export const MyPosts = (props: IMyPostsProps) => {
 
     let postsElements = props.postsData.map((p) => (
         <Post message={p.message} likesCount={p.likesCount} />

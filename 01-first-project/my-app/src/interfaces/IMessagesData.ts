@@ -1,4 +1,4 @@
-export interface IMessageData {
+export interface IMessagesData {
     id: number;
     message: string;
 }

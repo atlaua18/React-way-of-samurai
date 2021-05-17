@@ -10,12 +10,16 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { IPost } from "./interfaces/IPost";
 import { IAppState } from "./interfaces/IAppState";
+import { IMessagesData } from "./interfaces/IMessagesData";
 
 const App = (props: {
     appState: IAppState,
     addPost: (postText: any) => {
         newPost: IPost,
-    };
+    },
+    newMessage: (messageText: string) => {
+        newMessage: IMessagesData,
+    },
 }) => {
     return (
         <BrowserRouter>
@@ -33,7 +37,7 @@ const App = (props: {
                         path="/dialogs"
                         render={() => (
                             <Dialogs
-                                state={props.appState.messagePage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
+                                state={props.appState.messagePage} newMessage={props.newMessage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
                             />
                         )}
                     />
