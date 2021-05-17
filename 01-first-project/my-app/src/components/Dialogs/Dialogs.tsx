@@ -10,9 +10,7 @@ export const Dialogs = (props: {
         dialogsData: IDialogsData[],
         messagesData: IMessagesData[],
     },
-    newMessage: (messageText: string) => {
-        newMessage: IMessagesData,
-    },
+    newMessage: (messageText: string) => void,
 }) => {
 
     // создание/генерация ава + имя(то,что слева)

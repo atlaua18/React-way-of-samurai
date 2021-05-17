@@ -8,19 +8,15 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
-import { IPost } from "./interfaces/IPost";
+// import { IPost } from "./interfaces/IPost";
 import { IAppState } from "./interfaces/IAppState";
-import { IMessagesData } from "./interfaces/IMessagesData";
+// import { IMessagesData } from "./interfaces/IMessagesData";
 
 const App = (props: {
     appState: IAppState,
-    addPost: () => {
-        newPost: IPost,
-    },
-    updateNewPostText: (newText: string) => {},
-    newMessage: (messageText: string) => {
-        newMessage: IMessagesData,
-    },
+    addPost: () => void,
+    updateNewPostText: (newText: string) => void,
+    newMessage: (messageText: string) => void,
 }) => {
     return (
         <BrowserRouter>

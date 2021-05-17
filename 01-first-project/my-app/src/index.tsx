@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App.tsx";
+import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 import state from "./redux/state";
 import { addPost } from "./redux/state";
@@ -9,9 +9,10 @@ import { addPost } from "./redux/state";
 import { sendMessage } from "./redux/state";
 import { updateNewPostText } from "./redux/state";
 import { subscribe } from "./redux/state";
+import { IAppState } from "./interfaces/IAppState";
 
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (state: IAppState) => {
     ReactDOM.render(
         <React.StrictMode>
             <App appState={state} addPost={addPost} updateNewPostText={updateNewPostText} newMessage={sendMessage}/> {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}

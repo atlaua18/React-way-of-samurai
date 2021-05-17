@@ -42,7 +42,11 @@ let state: IAppState = {
     },
 };
 
-export const addPost = () => {
+interface FinInterface {
+    () : void;
+}
+
+export const addPost: FinInterface = () => {
     let newPost: IPost = {
         id: 3,
         message: state.profilePage.newPostText,

@@ -8,10 +8,8 @@ export const Profile = (props: {
         postsData: IPost[];
         newPostText: string;
     },
-    addPost: () => {
-        newPost: IPost;
-    },
-    updateNewPostText: (newText: string) => {},
+    addPost: () => void,
+    updateNewPostText: (newText: string) => void,
 }) => {
     return (
         <div>
