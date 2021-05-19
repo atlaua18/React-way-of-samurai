@@ -14,7 +14,7 @@ import { IAppState } from "./interfaces/IAppState";
 
 const App = (props: {
     appState: IAppState,
-    addPost: () => void,
+    addPost: () => void, // () => { newPost: IPost }
     updateNewPostText: (newText: string) => void,
     newMessage: (messageText: string) => void,
 }) => {
