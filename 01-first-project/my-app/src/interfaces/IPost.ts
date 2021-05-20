@@ -1,5 +1,5 @@
 export interface IPost {
     id: number;
-    message: string;
+    message?: string;
     likesCount: number;
 }

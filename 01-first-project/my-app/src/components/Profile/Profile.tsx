@@ -1,4 +1,5 @@
 import React from "react";
+import { IAction } from "../../interfaces/IAction";
 import { IPost } from "../../interfaces/IPost";
 import { MyPosts } from "./MyPosts/MyPosts";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
@@ -6,10 +7,11 @@ import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 export const Profile = (props: {
     profilePage: {
         postsData: IPost[];
-        newPostText: string;
+        newPostText?: string;
     },
-    addPost: () => void,
-    updateNewPostText: (newText: string) => void,
+    // addPost: () => void,
+    // updateNewPostText: (newText: string) => void,
+    dispatch: (action: IAction) => void,
 }) => {
     return (
         <div>
@@ -17,8 +19,9 @@ export const Profile = (props: {
             <MyPosts
                 postsData={props.profilePage.postsData}
                 newPostText={props.profilePage.newPostText}
-                updateNewPostText={props.updateNewPostText}
-                addPost={props.addPost}
+                dispatch={props.dispatch}
+                // updateNewPostText={props.updateNewPostText}
+                // addPost={props.addPost}
             />
         </div>
     );

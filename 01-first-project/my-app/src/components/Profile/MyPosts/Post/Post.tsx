@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./post.module.css";
 
-export const Post = (props: { message: string, likesCount: number }) => {
+export const Post = (props: { message?: string, likesCount: number }) => {
     return (
         <div>
             <div className={styles.item}>

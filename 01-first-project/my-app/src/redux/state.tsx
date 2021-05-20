@@ -1,9 +1,11 @@
+import { IAction } from "../interfaces/IAction";
 import { IAppState } from "../interfaces/IAppState";
 import { IMessagesData } from "../interfaces/IMessagesData";
 import { IPost } from "../interfaces/IPost";
+import { IStore } from "../interfaces/IStore";
 // import { rerenderEntireTree } from "../render";
 
-let store = {
+let store: IStore = {
     _state: {
         profilePage: {
             postsData: [
@@ -49,31 +51,56 @@ let store = {
         this._callSubscriber = observer; //паттерн Наблюдатель(observer)
     },
     
-    addPost() {
-        let newPost: IPost = {
-            id: 3,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText (newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    sendMessage (messageText: string){
-        let newMessage: IMessagesData = {
-            id: 5,
-            message: messageText,
-        };
-        this._state.messagePage.messagesData.push(newMessage);
-    
-        this._callSubscriber(this._state);
-    },
+    dispatch(action: IAction) {
+        if(action.type === "ADD-POST") {
+            let newPost: IPost = {
+                id: 3,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber(this._state);
+        } else if(action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if(action.type === "SEND-MESSAGE") {
+            let newMessage: IMessagesData = {
+                id: 5,
+                message: action.messageText,
+            };
+            this._state.messagePage.messagesData.push(newMessage);
+        
+            this._callSubscriber(this._state);
+        }
+    }
 };
 export default store;
+
+
+    // addPost() {
+    //     let newPost: IPost = {
+    //         id: 3,
+    //         message: this._state.profilePage.newPostText,
+    //         likesCount: 0,
+    //     };
+    //     this._state.profilePage.postsData.push(newPost);
+    //     this._state.profilePage.newPostText = "";
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewPostText (newText: string) {
+    //     this._state.profilePage.newPostText = newText;
+    //     this._callSubscriber(this._state);
+    // },
+    // sendMessage (messageText: string){
+    //     let newMessage: IMessagesData = {
+    //         id: 5,
+    //         message: messageText,
+    //     };
+    //     this._state.messagePage.messagesData.push(newMessage);
+    
+    //     this._callSubscriber(this._state);
+    // },
 
 // let rerenderEntireTree = (s: IAppState) => {
 //     console.log("state change")

@@ -12,12 +12,12 @@ export const MyPosts = (props: IMyPostsProps) => {
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.addPost();
+        props.dispatch({type: "ADD-POST"});
     };
 
     let onPostChange = () => {
         let text: string = newPostElement?.current?.value ?? "";
-        props.updateNewPostText(text);
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text});
     };
 
     return (

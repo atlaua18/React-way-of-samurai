@@ -16,9 +16,10 @@ let rerenderEntireTree = (state: IAppState) => {
         <React.StrictMode>
             <App
                 appState={state}
-                addPost={store.addPost.bind(store)}
-                updateNewPostText={store.updateNewPostText.bind(store)}
-                newMessage={store.sendMessage.bind(store)}
+                dispatch={store.dispatch.bind(store)}
+                // addPost={store.addPost.bind(store)}
+                // updateNewPostText={store.updateNewPostText.bind(store)}
+                // newMessage={store.sendMessage.bind(store)}
             />{" "}
             {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}
         </React.StrictMode>,

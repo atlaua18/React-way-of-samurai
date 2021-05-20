@@ -1,4 +1,5 @@
 import React from "react";
+import { IAction } from "../../interfaces/IAction";
 import { IDialogsData } from "../../interfaces/IDialogsData";
 import { IMessagesData } from "../../interfaces/IMessagesData";
 import { DialogItem } from "./DialogItem/DialogItem";
@@ -10,7 +11,8 @@ export const Dialogs = (props: {
         dialogsData: IDialogsData[],
         messagesData: IMessagesData[],
     },
-    newMessage: (messageText: string) => void,
+    // newMessage: (messageText: string) => void,
+    dispatch: (action: IAction) => void,
 }) => {
 
     // создание/генерация ава + имя(то,что слева)
@@ -27,7 +29,8 @@ export const Dialogs = (props: {
 
     let SendMessage = () => {
         let text: string = newMessageElement?.current?.value ?? "";
-        props.newMessage(text);
+        props.dispatch({type: "SEND-MESSAGE", messageText: text})
+        // props.newMessage(text);
         if(newMessageElement.current !== null) {
             newMessageElement.current.value = "";
         }

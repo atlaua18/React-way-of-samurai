@@ -10,13 +10,15 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 // import { IPost } from "./interfaces/IPost";
 import { IAppState } from "./interfaces/IAppState";
+import { IAction } from "./interfaces/IAction";
 // import { IMessagesData } from "./interfaces/IMessagesData";
 
 const App = (props: {
     appState: IAppState,
-    addPost: () => void, // () => { newPost: IPost }
-    updateNewPostText: (newText: string) => void,
-    newMessage: (messageText: string) => void,
+    // addPost: () => void, // () => { newPost: IPost }
+    // updateNewPostText: (newText: string) => void,
+    // newMessage: (messageText: string) => void,
+    dispatch: (action: IAction) => void,
 }) => {
     return (
         <BrowserRouter>
@@ -28,15 +30,17 @@ const App = (props: {
                         path="/profile"
                         render={() => (
                             <Profile profilePage={props.appState.profilePage} 
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}/>
+                            dispatch={props.dispatch}
+                            // addPost={props.addPost}
+                            // updateNewPostText={props.updateNewPostText}
+                            />
                         )}
                     />
                     <Route
                         path="/dialogs"
                         render={() => (
                             <Dialogs
-                                state={props.appState.messagePage} newMessage={props.newMessage} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
+                                state={props.appState.messagePage} dispatch={props.dispatch} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
                             />
                         )}
                     />
