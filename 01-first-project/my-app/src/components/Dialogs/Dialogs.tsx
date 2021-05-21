@@ -2,6 +2,7 @@ import React from "react";
 import { IAction } from "../../interfaces/IAction";
 import { IDialogsData } from "../../interfaces/IDialogsData";
 import { IMessagesData } from "../../interfaces/IMessagesData";
+import { sendMessageActionCreator } from "../../redux/state";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
@@ -26,10 +27,10 @@ export const Dialogs = (props: {
     ));
 
     let newMessageElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
-
-    let SendMessage = () => {
+    
+    let sendMessage = () => {
         let text: string = newMessageElement?.current?.value ?? "";
-        props.dispatch({type: "SEND-MESSAGE", messageText: text})
+        props.dispatch(sendMessageActionCreator(text))
         // props.newMessage(text);
         if(newMessageElement.current !== null) {
             newMessageElement.current.value = "";
@@ -43,7 +44,7 @@ export const Dialogs = (props: {
                 {messageElements} {/*тут отрисовка сообщений*/}
                 <div className={styles.createMessage}>
                     <textarea ref={newMessageElement} className={styles.typeMessage}></textarea>
-                    <button onClick={SendMessage} className={styles.sendMessage}>Send</button>
+                    <button onClick={sendMessage} className={styles.sendMessage}>Send</button>
                 </div>
             </div>
         </div>

@@ -5,6 +5,10 @@ import { IPost } from "../interfaces/IPost";
 import { IStore } from "../interfaces/IStore";
 // import { rerenderEntireTree } from "../render";
 
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SEND_MESSAGE = "SEND-MESSAGE";
+
 let store: IStore = {
     _state: {
         profilePage: {
@@ -52,7 +56,7 @@ let store: IStore = {
     },
     
     dispatch(action: IAction) {
-        if(action.type === "ADD-POST") {
+        if(action.type === ADD_POST) {
             let newPost: IPost = {
                 id: 3,
                 message: this._state.profilePage.newPostText,
@@ -61,10 +65,10 @@ let store: IStore = {
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state);
-        } else if(action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if(action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
-        } else if(action.type === "SEND-MESSAGE") {
+        } else if(action.type === SEND_MESSAGE) {
             let newMessage: IMessagesData = {
                 id: 5,
                 message: action.messageText,
@@ -75,6 +79,21 @@ let store: IStore = {
         }
     }
 };
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+
+export const updateNewPostTextActionCreator = (text: string) => (
+    {
+        type: UPDATE_NEW_POST_TEXT, 
+        newText: text
+    }
+);
+
+export const sendMessageActionCreator = (text: string) => (
+    {type: SEND_MESSAGE,
+    messageText: text,
+});
+
 export default store;
 
 
