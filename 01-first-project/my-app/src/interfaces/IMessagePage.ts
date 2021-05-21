@@ -4,4 +4,5 @@ import { IMessagesData } from "./IMessagesData";
 export interface IMessagePage {
     dialogsData: IDialogsData[];
     messagesData: IMessagesData[];
+    newMessageText?: string;
 }

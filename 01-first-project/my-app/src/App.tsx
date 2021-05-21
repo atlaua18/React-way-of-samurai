@@ -11,14 +11,16 @@ import { Settings } from "./components/Settings/Settings";
 // import { IPost } from "./interfaces/IPost";
 import { IAppState } from "./interfaces/IAppState";
 import { IAction } from "./interfaces/IAction";
+import { IStore } from "./interfaces/IStore";
 // import { IMessagesData } from "./interfaces/IMessagesData";
 
 const App = (props: {
-    appState: IAppState,
+    appState: IAppState;
     // addPost: () => void, // () => { newPost: IPost }
     // updateNewPostText: (newText: string) => void,
     // newMessage: (messageText: string) => void,
-    dispatch: (action: IAction) => void,
+    dispatch: (action: IAction) => void;
+    store: IStore;
 }) => {
     return (
         <BrowserRouter>
@@ -29,10 +31,11 @@ const App = (props: {
                     <Route
                         path="/profile"
                         render={() => (
-                            <Profile profilePage={props.appState.profilePage} 
-                            dispatch={props.dispatch}
-                            // addPost={props.addPost}
-                            // updateNewPostText={props.updateNewPostText}
+                            <Profile
+                                profilePage={props.appState.profilePage}
+                                dispatch={props.dispatch}
+                                // addPost={props.addPost}
+                                // updateNewPostText={props.updateNewPostText}
                             />
                         )}
                     />
@@ -40,7 +43,9 @@ const App = (props: {
                         path="/dialogs"
                         render={() => (
                             <Dialogs
-                                state={props.appState.messagePage} dispatch={props.dispatch} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
+                            store={props.store}
+                                // messagePage={props.appState.messagePage}
+                                // dispatch={props.dispatch} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
                             />
                         )}
                     />

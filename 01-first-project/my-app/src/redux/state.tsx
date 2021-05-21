@@ -8,6 +8,7 @@ import { IStore } from "../interfaces/IStore";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 let store: IStore = {
     _state: {
@@ -42,21 +43,22 @@ let store: IStore = {
                 { id: 3, message: "How are you?" },
                 { id: 4, message: "I'm fine" },
             ],
+            newMessageText: "",
         },
     },
-    _callSubscriber (s: IAppState) {
-        console.log("state change")
+    _callSubscriber(s: IAppState) {
+        console.log("state change");
     },
 
     getState() {
         return this._state;
-    },    
-    subscribe (observer: any) {
+    },
+    subscribe(observer: any) {
         this._callSubscriber = observer; //паттерн Наблюдатель(observer)
     },
-    
+
     dispatch(action: IAction) {
-        if(action.type === ADD_POST) {
+        if (action.type === ADD_POST) {
             let newPost: IPost = {
                 id: 3,
                 message: this._state.profilePage.newPostText,
@@ -65,61 +67,63 @@ let store: IStore = {
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state);
-        } else if(action.type === UPDATE_NEW_POST_TEXT) {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
-        } else if(action.type === SEND_MESSAGE) {
+        } else if (action.type === SEND_MESSAGE) {
             let newMessage: IMessagesData = {
                 id: 5,
-                message: action.messageText,
+                message: this._state.messagePage.newMessageText,
             };
             this._state.messagePage.messagesData.push(newMessage);
-        
+            this._state.messagePage.newMessageText = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagePage.newMessageText = action.messageText;
             this._callSubscriber(this._state);
         }
-    }
+    },
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
+export const addPostActionCreator = () => ({ type: ADD_POST });
 
-export const updateNewPostTextActionCreator = (text: string) => (
-    {
-        type: UPDATE_NEW_POST_TEXT, 
-        newText: text
-    }
-);
+export const updateNewPostTextActionCreator = (text: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text,
+});
 
-export const sendMessageActionCreator = (text: string) => (
-    {type: SEND_MESSAGE,
+export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
+
+export const updateNewMessageTextActionCreator = (text: string) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT,
     messageText: text,
 });
 
 export default store;
 
+// addPost() {
+//     let newPost: IPost = {
+//         id: 3,
+//         message: this._state.profilePage.newPostText,
+//         likesCount: 0,
+//     };
+//     this._state.profilePage.postsData.push(newPost);
+//     this._state.profilePage.newPostText = "";
+//     this._callSubscriber(this._state);
+// },
+// updateNewPostText (newText: string) {
+//     this._state.profilePage.newPostText = newText;
+//     this._callSubscriber(this._state);
+// },
+// sendMessage (messageText: string){
+//     let newMessage: IMessagesData = {
+//         id: 5,
+//         message: messageText,
+//     };
+//     this._state.messagePage.messagesData.push(newMessage);
 
-    // addPost() {
-    //     let newPost: IPost = {
-    //         id: 3,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 0,
-    //     };
-    //     this._state.profilePage.postsData.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewPostText (newText: string) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._callSubscriber(this._state);
-    // },
-    // sendMessage (messageText: string){
-    //     let newMessage: IMessagesData = {
-    //         id: 5,
-    //         message: messageText,
-    //     };
-    //     this._state.messagePage.messagesData.push(newMessage);
-    
-    //     this._callSubscriber(this._state);
-    // },
+//     this._callSubscriber(this._state);
+// },
 
 // let rerenderEntireTree = (s: IAppState) => {
 //     console.log("state change")
