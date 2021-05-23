@@ -1,14 +1,11 @@
 import { IAction } from "../interfaces/IAction";
 import { IAppState } from "../interfaces/IAppState";
-import { IMessagesData } from "../interfaces/IMessagesData";
-import { IPost } from "../interfaces/IPost";
+// import { IMessagesData } from "../interfaces/IMessagesData";
+// import { IPost } from "../interfaces/IPost";
 import { IStore } from "../interfaces/IStore";
+import { messageReducer } from "./messageReducer";
+import { profileReducer } from "./profileReducer";
 // import { rerenderEntireTree } from "../render";
-
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 let store: IStore = {
     _state: {
@@ -58,48 +55,55 @@ let store: IStore = {
     },
 
     dispatch(action: IAction) {
-        if (action.type === ADD_POST) {
-            let newPost: IPost = {
-                id: 3,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0,
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === SEND_MESSAGE) {
-            let newMessage: IMessagesData = {
-                id: 5,
-                message: this._state.messagePage.newMessageText,
-            };
-            this._state.messagePage.messagesData.push(newMessage);
-            this._state.messagePage.newMessageText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.messagePage.newMessageText = action.messageText;
-            this._callSubscriber(this._state);
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = messageReducer(this._state.messagePage, action);
+
+        this._callSubscriber(this._state);
     },
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = (text: string) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-});
-
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
-
-export const updateNewMessageTextActionCreator = (text: string) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    messageText: text,
-});
-
 export default store;
+
+//#region 
+// export const addPostActionCreator = () => ({ type: ADD_POST });
+
+// export const updateNewPostTextActionCreator = (text: string) => ({
+//     type: UPDATE_NEW_POST_TEXT,
+//     newText: text,
+// });
+
+// export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
+
+// export const updateNewMessageTextActionCreator = (text: string) => ({
+//     type: UPDATE_NEW_MESSAGE_TEXT,
+//     messageText: text,
+// });
+
+// if (action.type === ADD_POST) {
+        //     let newPost: IPost = {
+        //         id: 3,
+        //         message: this._state.profilePage.newPostText,
+        //         likesCount: 0,
+        //     };
+        //     this._state.profilePage.postsData.push(newPost);
+        //     this._state.profilePage.newPostText = "";
+        //     this._callSubscriber(this._state);
+        // } else if (action.type === UPDATE_NEW_POST_TEXT) {
+        //     this._state.profilePage.newPostText = action.newText;
+        //     this._callSubscriber(this._state);
+        // } else if (action.type === SEND_MESSAGE) {
+        //     let newMessage: IMessagesData = {
+        //         id: 5,
+        //         message: this._state.messagePage.newMessageText,
+        //     };
+        //     this._state.messagePage.messagesData.push(newMessage);
+        //     this._state.messagePage.newMessageText = "";
+        //     this._callSubscriber(this._state);
+        // } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+        //     this._state.messagePage.newMessageText = action.messageText;
+        //     this._callSubscriber(this._state);
+        // }
 
 // addPost() {
 //     let newPost: IPost = {
@@ -193,3 +197,4 @@ export default store;
 // export const subscribe = (observer: any) => {
 //     rerenderEntireTree = observer; //паттерн Наблюдатель(observer)
 // };
+//#endregion

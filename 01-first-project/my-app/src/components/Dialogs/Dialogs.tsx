@@ -3,7 +3,7 @@ import React from "react";
 // import { IDialogsData } from "../../interfaces/IDialogsData";
 // import { IMessagesData } from "../../interfaces/IMessagesData";
 import { IStore } from "../../interfaces/IStore";
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/state";
+import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/messageReducer";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
