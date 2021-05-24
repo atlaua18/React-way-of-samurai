@@ -1,7 +1,4 @@
 import React from "react";
-// import { IAction } from "../../interfaces/IAction";
-// import { IDialogsData } from "../../interfaces/IDialogsData";
-// import { IMessagesData } from "../../interfaces/IMessagesData";
 import { IStore } from "../../interfaces/IStore";
 import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/messageReducer";
 import { DialogItem } from "./DialogItem/DialogItem";
@@ -49,11 +46,12 @@ export const Dialogs = (props: {
             <div className={styles.messages}>
                 {messageElements} {/*тут отрисовка сообщений*/}
                 <div className={styles.createMessage}>
-                    <textarea 
+                    <textarea
+                    placeholder="Message"
                     onChange={onMessageChange} 
-                    // ref={newMessageElement} 
                     value={state.newMessageText} 
-                    className={styles.typeMessage}></textarea>
+                    className={styles.typeMessage}>
+                    </textarea>
                     <button onClick={sendMessage} className={styles.sendMessage}>Send</button>
                 </div>
             </div>

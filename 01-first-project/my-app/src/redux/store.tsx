@@ -43,14 +43,15 @@ let store: IStore = {
             newMessageText: "",
         },
     },
-    _callSubscriber(s: IAppState) {
+
+    _callSubscriber(_s: IAppState) {
         console.log("state change");
     },
 
     getState() {
         return this._state;
     },
-    subscribe(observer: any) {
+    subscribe(observer: () => void) {
         this._callSubscriber = observer; //паттерн Наблюдатель(observer)
     },
 
