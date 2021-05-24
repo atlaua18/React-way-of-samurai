@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { Dialogs } from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
@@ -10,14 +9,21 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { IAppState } from "./interfaces/IAppState";
 import { IAction } from "./interfaces/IAction";
+import { Dispatch, EmptyObject, Store } from "redux";
+import { IProfilePage } from "./interfaces/IProfilePage";
+import { IMessagePage } from "./interfaces/IMessagePage";
+import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
 const App = (props: {
     appState: IAppState;
-    // addPost: () => void, // () => { newPost: IPost }
-    // updateNewPostText: (newText: string) => void,
-    // newMessage: (messageText: string) => void,
-    dispatch: (action: IAction) => void;
-    store: any;
+    dispatch: Dispatch<IAction>;
+    store: Store<
+        EmptyObject & {
+            profilePage: IProfilePage;
+            messagePage: IMessagePage;
+        },
+        IAction
+    >;
 }) => {
     return (
         <BrowserRouter>
@@ -27,24 +33,11 @@ const App = (props: {
                 <div className="app-wrapper-content">
                     <Route
                         path="/profile"
-                        render={() => (
-                            <Profile
-                                profilePage={props.appState.profilePage}
-                                dispatch={props.dispatch}
-                                // addPost={props.addPost}
-                                // updateNewPostText={props.updateNewPostText}
-                            />
-                        )}
+                        render={() => <Profile store={props.store} />}
                     />
                     <Route
                         path="/dialogs"
-                        render={() => (
-                            <Dialogs
-                            store={props.store}
-                                // messagePage={props.appState.messagePage}
-                                // dispatch={props.dispatch} // БЫЛО dialogsData={props.appState.dialogsData} messagesData={props.appState.messagesData}
-                            />
-                        )}
+                        render={() => <DialogsContainer store={props.store} />}
                     />
                     <Route path="/news" component={News} />
                     <Route path="/music" component={Music} />

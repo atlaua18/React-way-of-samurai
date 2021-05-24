@@ -12,11 +12,7 @@ let rerenderEntireTree = (state: IAppState) => {
                 appState={state}
                 dispatch={store.dispatch.bind(store)}
                 store={store}
-                // addPost={store.addPost.bind(store)}
-                // updateNewPostText={store.updateNewPostText.bind(store)}
-                // newMessage={store.sendMessage.bind(store)}
-            />{" "}
-            {/*ДО state БЫЛО так: postsData={postsData} dialogsData={dialogsData} messagesData={messagesData} */}
+            />
         </React.StrictMode>,
         document.getElementById("root")
     );

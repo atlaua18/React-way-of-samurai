@@ -1,22 +1,12 @@
 import React from "react";
-import { IStore } from "../../interfaces/IStore";
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/messageReducer";
+import { IDialogsProps } from "../../interfaces/IDialogsProps";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
 
-export const Dialogs = (props: {
-    // messagePage: {
-    //     dialogsData: IDialogsData[],
-    //     messagesData: IMessagesData[],
-    //     newMessageText?: string;
-    // },
-    // newMessage: (messageText: string) => void,
-    // dispatch: (action: IAction) => void;
-    store: IStore;
-}) => {
+export const Dialogs = (props: IDialogsProps) => {
 
-    let state = props.store.getState().messagePage;
+    let state = props.messagePage;
 
     // создание/генерация ава + имя(то,что слева)
     let dialogElements = state.dialogsData.map((d) => (
@@ -27,17 +17,15 @@ export const Dialogs = (props: {
     let messageElements = state.messagesData.map((m) => (
         <Message message={m.message} />
     ));
-
-    // let newMessageElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
-    
-    let sendMessage = () => {
-        props.store.dispatch(sendMessageActionCreator());
+   
+    let onSendMessage = () => {
+        props.sendMessage();
     }
 
     let onMessageChange = (e: any) => {
-        // let text: string = newMessageElement?.current?.value ?? "";
         let text: string = e.target.value;
-        props.store.dispatch(updateNewMessageTextActionCreator(text));
+        props.updateNewMessageText(text);
+        // props.store.dispatch(updateNewMessageTextActionCreator(text));
     }
 
     return (
@@ -52,9 +40,12 @@ export const Dialogs = (props: {
                     value={state.newMessageText} 
                     className={styles.typeMessage}>
                     </textarea>
-                    <button onClick={sendMessage} className={styles.sendMessage}>Send</button>
+                    <button onClick={onSendMessage} className={styles.sendMessage}>Send</button>
                 </div>
             </div>
         </div>
     );
 };
+
+// let newMessageElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
+// let text: string = newMessageElement?.current?.value ?? "";

@@ -1,10 +1,8 @@
-import { IAction } from "./IAction";
 import { IPost } from "./IPost";
 
 export interface IMyPostsProps {
     postsData: IPost[];
-    // addPost(): void; // () => { newPost: IPost }
+    addPost: () => void; 
     newPostText?: string;
-    // updateNewPostText(newText: string): void;
-    dispatch: (action: IAction) => void,
+    updateNewPostText: (text: string) => void;
 }

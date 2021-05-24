@@ -1,6 +1,6 @@
 import React from "react";
 import { IMyPostsProps } from "../../../interfaces/IMyPostsProps";
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
+// import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
 
@@ -12,13 +12,15 @@ export const MyPosts = (props: IMyPostsProps) => {
 
     let newPostElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost();
+        // props.dispatch(addPostActionCreator());
     };
 
     let onPostChange = () => {
-        let text: string = newPostElement?.current?.value ?? "";
-        props.dispatch(updateNewPostTextActionCreator(text));
+        let text = newPostElement?.current?.value ?? "";
+        props.updateNewPostText(text);
+        // props.dispatch(updateNewPostTextActionCreator(text));
     };
 
     return (
@@ -29,7 +31,7 @@ export const MyPosts = (props: IMyPostsProps) => {
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={styles.posts}>
