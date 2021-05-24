@@ -5,7 +5,15 @@ import { IProfilePage } from "../interfaces/IProfilePage";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-export const profileReducer = (state: IProfilePage, action: IAction) => {
+let initialState = {
+    postsData: [
+        { id: 1, message: "Hi, how are you?", likesCount: 15 },
+        { id: 2, message: "It's my first post", likesCount: 20 },
+    ],
+    newPostText: "",
+}
+
+export const profileReducer = (state: IProfilePage = initialState, action: IAction) => {
     switch (action.type) {
         case ADD_POST:
             let newPost: IPost = {

@@ -2,14 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-// import reportWebVitals from "./reportWebVitals";
-import store from "./redux/store";
-// import { addPost } from "./redux/state";
-// import { rerenderEntireTree } from "./render";
-// import { sendMessage } from "./redux/state";
-// import { updateNewPostText } from "./redux/state";
-// import { subscribe } from "./redux/state";
 import { IAppState } from "./interfaces/IAppState";
+import store from "./redux/reduxStore";
 
 let rerenderEntireTree = (state: IAppState) => {
     ReactDOM.render(
@@ -30,7 +24,10 @@ let rerenderEntireTree = (state: IAppState) => {
 
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();
+    rerenderEntireTree(state);
+});
 
 // ReactDOM.render(
 //     <React.StrictMode>

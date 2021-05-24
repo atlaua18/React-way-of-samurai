@@ -1,11 +1,8 @@
 import { IAction } from "../interfaces/IAction";
 import { IAppState } from "../interfaces/IAppState";
-// import { IMessagesData } from "../interfaces/IMessagesData";
-// import { IPost } from "../interfaces/IPost";
 import { IStore } from "../interfaces/IStore";
 import { messageReducer } from "./messageReducer";
 import { profileReducer } from "./profileReducer";
-// import { rerenderEntireTree } from "../render";
 
 let store: IStore = {
     _state: {
