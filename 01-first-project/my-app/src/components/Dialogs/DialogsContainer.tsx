@@ -1,37 +1,61 @@
-import React from "react";
+// import React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { IAction } from "../../interfaces/IAction";
+import { IAppState } from "../../interfaces/IAppState";
 import {
     sendMessageActionCreator,
     updateNewMessageTextActionCreator,
 } from "../../redux/messageReducer";
-import { StoreContext } from "../../StoreContext";
 import { Dialogs } from "./Dialogs";
 
-export const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                let state = store.getState().messagePage;
-
-                let onSendMessage = () => {
-                    store.dispatch(sendMessageActionCreator());
-                };
-
-                let onMessageChange = (text: string) => {
-                    store.dispatch(
-                        updateNewMessageTextActionCreator(text)
-                    );
-                };
-                return (
-                    <Dialogs
-                        updateNewMessageText={onMessageChange}
-                        sendMessage={onSendMessage}
-                        messagePage={state}
-                    />
-                );
-            }}
-        </StoreContext.Consumer>
-    );
+let mapStateToProps = (state: IAppState) => {
+    return {
+        messagePage: state.messagePage,
+    }
 };
+
+let mapDispatchToProps = (dispatch: Dispatch<IAction>) => {
+    return {
+        updateNewMessageText: (text: string) => {
+            dispatch(updateNewMessageTextActionCreator(text));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageActionCreator());
+        },
+    }
+};
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
+
+
+// export const DialogsContainer = () => {
+//     return (
+//         <StoreContext.Consumer>
+//             {(store) => {
+//                 let state = store.getState().messagePage;
+
+//                 let onSendMessage = () => {
+//                     store.dispatch(sendMessageActionCreator());
+//                 };
+
+//                 let onMessageChange = (text: string) => {
+//                     store.dispatch(
+//                         updateNewMessageTextActionCreator(text)
+//                     );
+//                 };
+//                 return (
+//                     <Dialogs
+//                         updateNewMessageText={onMessageChange}
+//                         sendMessage={onSendMessage}
+//                         messagePage={store.getState().messagePage}
+//                     />
+//                 );
+//             }}
+//         </StoreContext.Consumer>
+//     );
+// };
 
 // let newMessageElement: React.RefObject<HTMLTextAreaElement> = React.createRef<HTMLTextAreaElement>();
 // let text: string = newMessageElement?.current?.value ?? "";

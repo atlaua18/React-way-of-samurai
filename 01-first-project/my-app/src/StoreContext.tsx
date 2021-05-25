@@ -1,5 +1,4 @@
 import React from "react";
-import { IReduxStore } from "./interfaces/IReduxStore";
 import store from "./redux/reduxStore";
 
 export const StoreContext = React.createContext(store); // ДОЛЖНО БЫТЬ null !!!!!!!!!!!!!!!!!!!!!!!!!
