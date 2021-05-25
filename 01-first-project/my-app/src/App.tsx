@@ -7,24 +7,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
-import { IAppState } from "./interfaces/IAppState";
-import { IAction } from "./interfaces/IAction";
-import { Dispatch, EmptyObject, Store } from "redux";
-import { IProfilePage } from "./interfaces/IProfilePage";
-import { IMessagePage } from "./interfaces/IMessagePage";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 
-const App = (props: {
-    appState: IAppState;
-    dispatch: Dispatch<IAction>;
-    store: Store<
-        EmptyObject & {
-            profilePage: IProfilePage;
-            messagePage: IMessagePage;
-        },
-        IAction
-    >;
-}) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -33,11 +18,11 @@ const App = (props: {
                 <div className="app-wrapper-content">
                     <Route
                         path="/profile"
-                        render={() => <Profile store={props.store} />}
+                        render={() => <Profile />}
                     />
                     <Route
                         path="/dialogs"
-                        render={() => <DialogsContainer store={props.store} />}
+                        render={() => <DialogsContainer />}
                     />
                     <Route path="/news" component={News} />
                     <Route path="/music" component={Music} />
@@ -49,3 +34,15 @@ const App = (props: {
 };
 
 export default App;
+
+// props: {
+    // appState: IAppState;
+    // dispatch: Dispatch<IAction>;
+    // store: Store<
+    //     EmptyObject & {
+    //         profilePage: IProfilePage;
+    //         messagePage: IMessagePage;
+    //     },
+    //     IAction
+    // >;
+// }
