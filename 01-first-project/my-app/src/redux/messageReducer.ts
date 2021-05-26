@@ -36,23 +36,32 @@ export const messageReducer = (
     state: IMessagePage = initialState,
     action: IAction
 ) => {
+    function getId() {
+        let id = 0;
+        for (let i = state.messagesData.length - 1; i > 0; i++) {
+            id = state.messagesData[i].id + 1;
+            console.log(id);
+            break;
+        }
+        return id;
+    }
+
     switch (action.type) {
-        case SEND_MESSAGE: {
+        case SEND_MESSAGE:
             let newMessage: IMessagesData = {
-                id: 5,
+                id: getId(),
                 message: state.newMessageText,
             };
-            let stateCopy = { ...state };
-            stateCopy.messagesData = [ ...state.messagesData ];
-            stateCopy.messagesData.push(newMessage);
-            stateCopy.newMessageText = "";
-            return stateCopy;
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            let stateCopy = { ...state };
-            stateCopy.newMessageText = action.messageText;
-            return stateCopy;
-        }
+            return {
+                ...state,
+                messagesData: [...state.messagesData, newMessage],
+                newMessageText: "",
+            };
+        case UPDATE_NEW_MESSAGE_TEXT:
+            return {
+                ...state,
+                newMessageText: action.messageText,
+            };
         default:
             return state;
     }

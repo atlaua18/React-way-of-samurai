@@ -10,12 +10,12 @@ export const Dialogs = (props: IDialogsProps) => {
 
     // создание/генерация ава + имя(то,что слева)
     let dialogElements = state.dialogsData.map((d) => (
-        <DialogItem N={d.name} Id={d.id} AVA={d.avatar} />
+        <DialogItem N={d.name} Id={d.id} AVA={d.avatar} key={d.id}/>
     ));
 
     // создание/генерация сообщений в диалоге(то,что справа)
     let messageElements = state.messagesData.map((m) => (
-        <Message message={m.message} />
+        <Message message={m.message} key={m.id}/>
     ));
    
     let onSendMessage = () => {

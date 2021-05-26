@@ -17,23 +17,34 @@ export const profileReducer = (
     state: IProfilePage = initialState,
     action: IAction
 ) => {
+    function getId() {
+        let id = 0;
+        for (let i = state.postsData.length - 1; i > 0; i++) {
+            id = state.postsData[i].id + 1;
+            console.log(id);
+            break;
+        }
+        return id;
+    }
+
     switch (action.type) {
         case ADD_POST: {
             let newPost: IPost = {
-                id: 3,
+                id: getId(),
                 message: state.newPostText,
                 likesCount: 0,
             };
-            let stateCopy = { ...state };
-            stateCopy.postsData = [...state.postsData];
-            stateCopy.postsData.push(newPost);
-            stateCopy.newPostText = "";
-            return stateCopy;
+            return {
+                ...state,
+                postsData: [...state.postsData, newPost],
+                newPostText: "",
+            };
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = { ...state };
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText,
+            };
         }
         default:
             return state;
