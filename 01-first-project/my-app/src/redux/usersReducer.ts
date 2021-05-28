@@ -61,7 +61,7 @@ export const usersReducer = (state: IUsersPage = initialState, action: IActionUs
             };
 
         case SET_USERS:
-            debugger
+            // debugger
             return {
                 ...state,
                 // users: [

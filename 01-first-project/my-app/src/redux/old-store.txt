@@ -1,85 +1,85 @@
-import { IAction } from "../interfaces/IAction";
-import { IAppState } from "../interfaces/IAppState";
-import { IStore } from "../interfaces/IStore";
-import { messageReducer } from "./messageReducer";
-import { profileReducer } from "./profileReducer";
+// import { IAction } from "../interfaces/IAction";
+// import { IAppState } from "../interfaces/IAppState";
+// import { IStore } from "../interfaces/IStore";
+// import { messageReducer } from "./messageReducer";
+// import { profileReducer } from "./profileReducer";
 
-let store: IStore = {
-    _state: {
-        profilePage: {
-            postsData: [
-                { id: 1, message: "Hi, how are you?", likesCount: 15 },
-                { id: 2, message: "It's my first post", likesCount: 20 },
-            ],
-            newPostText: "",
-        },
-        messagePage: {
-            dialogsData: [
-                {
-                    id: 1,
-                    name: "Nastya",
-                    avatar: "https://cdn.dribbble.com/users/4051260/screenshots/15643099/media/610a2b7dc0d934af453f846d349292be.jpeg?compress=1&resize=1000x750",
-                },
-                {
-                    id: 2,
-                    name: "Vitaliq",
-                    avatar: "https://cdn.dribbble.com/users/984375/screenshots/15647057/media/0c127c5f15c5778d36f5ace71760f579.jpg?compress=1&resize=1000x750",
-                },
-                {
-                    id: 3,
-                    name: "Mother",
-                    avatar: "https://cdn.dribbble.com/users/1162650/screenshots/15637865/media/df7d2c7a8570d2db9d07ea46f68057d5.jpg?compress=1&resize=800x600",
-                },
-            ],
-            messagesData: [
-                { id: 1, message: "Hi" },
-                { id: 2, message: "Yo" },
-                { id: 3, message: "How are you?" },
-                { id: 4, message: "I'm fine" },
-            ],
-            newMessageText: "",
-        },
-        usersPage: {
-            users: [
-                {
-                    id: 1,
-                    avatarURL:
-                        "https://cdn.dribbble.com/users/15779/screenshots/15722163/media/e93bd27868f6d3d1cef98e7c833b2a90.png?compress=1&resize=1600x1200",
-                    followed: true,
-                    fullName: "Nastya",
-                    status: "I'm a boss",
-                    location: { city: "Saint-Petersburg", country: "Russia" },
-                },
-            ],
-        },
-    },
+// let store: IStore = {
+//     _state: {
+//         profilePage: {
+//             postsData: [
+//                 { id: 1, message: "Hi, how are you?", likesCount: 15 },
+//                 { id: 2, message: "It's my first post", likesCount: 20 },
+//             ],
+//             newPostText: "",
+//         },
+//         messagePage: {
+//             dialogsData: [
+//                 {
+//                     id: 1,
+//                     name: "Nastya",
+//                     avatar: "https://cdn.dribbble.com/users/4051260/screenshots/15643099/media/610a2b7dc0d934af453f846d349292be.jpeg?compress=1&resize=1000x750",
+//                 },
+//                 {
+//                     id: 2,
+//                     name: "Vitaliq",
+//                     avatar: "https://cdn.dribbble.com/users/984375/screenshots/15647057/media/0c127c5f15c5778d36f5ace71760f579.jpg?compress=1&resize=1000x750",
+//                 },
+//                 {
+//                     id: 3,
+//                     name: "Mother",
+//                     avatar: "https://cdn.dribbble.com/users/1162650/screenshots/15637865/media/df7d2c7a8570d2db9d07ea46f68057d5.jpg?compress=1&resize=800x600",
+//                 },
+//             ],
+//             messagesData: [
+//                 { id: 1, message: "Hi" },
+//                 { id: 2, message: "Yo" },
+//                 { id: 3, message: "How are you?" },
+//                 { id: 4, message: "I'm fine" },
+//             ],
+//             newMessageText: "",
+//         },
+//         usersPage: {
+//             users: [
+//                 {
+//                     id: 1,
+//                     avatarURL:
+//                         "https://cdn.dribbble.com/users/15779/screenshots/15722163/media/e93bd27868f6d3d1cef98e7c833b2a90.png?compress=1&resize=1600x1200",
+//                     followed: true,
+//                     name: "Nastya",
+//                     status: "I'm a boss",
+//                     location: { city: "Saint-Petersburg", country: "Russia" },
+//                 },
+//             ],
+//         },
+//     },
 
-    _callSubscriber(_s: IAppState) {
-        console.log("state change");
-    },
+//     _callSubscriber(_s: IAppState) {
+//         console.log("state change");
+//     },
 
-    getState() {
-        return this._state;
-    },
-    subscribe(observer: () => void) {
-        this._callSubscriber = observer; //паттерн Наблюдатель(observer)
-    },
+//     getState() {
+//         return this._state;
+//     },
+//     subscribe(observer: () => void) {
+//         this._callSubscriber = observer; //паттерн Наблюдатель(observer)
+//     },
 
-    dispatch(action: IAction) {
-        this._state.profilePage = profileReducer(
-            this._state.profilePage,
-            action
-        );
-        this._state.messagePage = messageReducer(
-            this._state.messagePage,
-            action
-        );
+//     dispatch(action: IAction) {
+//         this._state.profilePage = profileReducer(
+//             this._state.profilePage,
+//             action
+//         );
+//         this._state.messagePage = messageReducer(
+//             this._state.messagePage,
+//             action
+//         );
 
-        this._callSubscriber(this._state);
-    },
-};
+//         this._callSubscriber(this._state);
+//     },
+// };
 
-export default store;
+// export default store;
 
 //#region
 // export const addPostActionCreator = () => ({ type: ADD_POST });
