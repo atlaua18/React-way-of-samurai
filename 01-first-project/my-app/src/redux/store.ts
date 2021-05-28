@@ -39,6 +39,19 @@ let store: IStore = {
             ],
             newMessageText: "",
         },
+        usersPage: {
+            users: [
+                {
+                    id: 1,
+                    avatarURL:
+                        "https://cdn.dribbble.com/users/15779/screenshots/15722163/media/e93bd27868f6d3d1cef98e7c833b2a90.png?compress=1&resize=1600x1200",
+                    followed: true,
+                    fullName: "Nastya",
+                    status: "I'm a boss",
+                    location: { city: "Saint-Petersburg", country: "Russia" },
+                },
+            ],
+        },
     },
 
     _callSubscriber(_s: IAppState) {
@@ -53,9 +66,14 @@ let store: IStore = {
     },
 
     dispatch(action: IAction) {
-
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.messagePage = messageReducer(this._state.messagePage, action);
+        this._state.profilePage = profileReducer(
+            this._state.profilePage,
+            action
+        );
+        this._state.messagePage = messageReducer(
+            this._state.messagePage,
+            action
+        );
 
         this._callSubscriber(this._state);
     },
@@ -63,7 +81,7 @@ let store: IStore = {
 
 export default store;
 
-//#region 
+//#region
 // export const addPostActionCreator = () => ({ type: ADD_POST });
 
 // export const updateNewPostTextActionCreator = (text: string) => ({
@@ -79,29 +97,29 @@ export default store;
 // });
 
 // if (action.type === ADD_POST) {
-        //     let newPost: IPost = {
-        //         id: 3,
-        //         message: this._state.profilePage.newPostText,
-        //         likesCount: 0,
-        //     };
-        //     this._state.profilePage.postsData.push(newPost);
-        //     this._state.profilePage.newPostText = "";
-        //     this._callSubscriber(this._state);
-        // } else if (action.type === UPDATE_NEW_POST_TEXT) {
-        //     this._state.profilePage.newPostText = action.newText;
-        //     this._callSubscriber(this._state);
-        // } else if (action.type === SEND_MESSAGE) {
-        //     let newMessage: IMessagesData = {
-        //         id: 5,
-        //         message: this._state.messagePage.newMessageText,
-        //     };
-        //     this._state.messagePage.messagesData.push(newMessage);
-        //     this._state.messagePage.newMessageText = "";
-        //     this._callSubscriber(this._state);
-        // } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-        //     this._state.messagePage.newMessageText = action.messageText;
-        //     this._callSubscriber(this._state);
-        // }
+//     let newPost: IPost = {
+//         id: 3,
+//         message: this._state.profilePage.newPostText,
+//         likesCount: 0,
+//     };
+//     this._state.profilePage.postsData.push(newPost);
+//     this._state.profilePage.newPostText = "";
+//     this._callSubscriber(this._state);
+// } else if (action.type === UPDATE_NEW_POST_TEXT) {
+//     this._state.profilePage.newPostText = action.newText;
+//     this._callSubscriber(this._state);
+// } else if (action.type === SEND_MESSAGE) {
+//     let newMessage: IMessagesData = {
+//         id: 5,
+//         message: this._state.messagePage.newMessageText,
+//     };
+//     this._state.messagePage.messagesData.push(newMessage);
+//     this._state.messagePage.newMessageText = "";
+//     this._callSubscriber(this._state);
+// } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+//     this._state.messagePage.newMessageText = action.messageText;
+//     this._callSubscriber(this._state);
+// }
 
 // addPost() {
 //     let newPost: IPost = {

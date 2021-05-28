@@ -4,15 +4,19 @@
     padding: 20px;
 }
 
-.item a {
+.nav a {
   text-decoration: none;
   color: black;
 }
 
-.item a.active {
+.nav a.active {
   color: cornflowerblue;
 }
 
-.item a:hover {
+.nav a:hover {
   color: rgb(44, 81, 150);
+}
+
+.users_item {
+  margin-top: 20px;
 }

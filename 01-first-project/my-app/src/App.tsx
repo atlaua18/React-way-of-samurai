@@ -8,6 +8,7 @@ import { News } from "./components/News/News";
 import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
+import { UsersContainer } from "./components/Users/UsersContainer";
 
 const App = () => {
     return (
@@ -16,14 +17,12 @@ const App = () => {
                 <Header />
                 <Navbar />
                 <div className="app-wrapper-content">
-                    <Route
-                        path="/profile"
-                        render={() => <Profile />}
-                    />
+                    <Route path="/profile" render={() => <Profile />} />
                     <Route
                         path="/dialogs"
                         render={() => <DialogsContainer />}
                     />
+                    <Route path="/users" render={() => <UsersContainer />} />
                     <Route path="/news" component={News} />
                     <Route path="/music" component={Music} />
                     <Route path="/settings" component={Settings} />
@@ -36,13 +35,13 @@ const App = () => {
 export default App;
 
 // props: {
-    // appState: IAppState;
-    // dispatch: Dispatch<IAction>;
-    // store: Store<
-    //     EmptyObject & {
-    //         profilePage: IProfilePage;
-    //         messagePage: IMessagePage;
-    //     },
-    //     IAction
-    // >;
+// appState: IAppState;
+// dispatch: Dispatch<IAction>;
+// store: Store<
+//     EmptyObject & {
+//         profilePage: IProfilePage;
+//         messagePage: IMessagePage;
+//     },
+//     IAction
+// >;
 // }

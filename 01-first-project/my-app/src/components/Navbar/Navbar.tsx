@@ -30,6 +30,11 @@ export const Navbar = () => {
                     Settings
                 </NavLink>
             </div>
+            <div className={styles.users_item}>
+                <NavLink to="/users">
+                    Find users
+                </NavLink>
+            </div>
         </nav>
     );
 };
