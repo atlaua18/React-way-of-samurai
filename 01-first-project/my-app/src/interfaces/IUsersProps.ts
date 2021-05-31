@@ -5,4 +5,9 @@ export interface IUsersProps {
     follow: (userId: number) => void;
     unfollow: (userId: number) => void;
     setUsers: (users: IUsers[]) => void;
+    pageSize: number;
+    totalUsersCount: number;
+    currentPage: number;
+    setCurrentPage: (pageNum: number) => void;
+    setTotalUsersCount: (totalCount: number) => void;
 }

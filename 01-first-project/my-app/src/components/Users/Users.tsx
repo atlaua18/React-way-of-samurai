@@ -5,19 +5,45 @@ import styles from "./users.module.css";
 import usersPhoto from "../../assets/images/ava.png";
 
 export class Users extends React.Component<IUsersProps> {
-    getUsers = () => {
+    
+    componentDidMount() {
         axios
-            .get("https://social-network.samuraijs.com/api/1.0/users")
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((response) => {
+                //{params: {count: 40}}
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
+            });
+    };
+
+    onPageChanged = (pageNum: number) => {
+        this.props.setCurrentPage(pageNum);
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
             .then((response) => {
                 //{params: {count: 40}}
                 this.props.setUsers(response.data.items);
             });
-    };
+    }
 
     render() {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
+        let pages = [];
+        for(let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
+        }
+
         return (
             <div>
-                <button onClick={this.getUsers}>Show users</button>
+                {/* <button onClick={this.getUsers}>Show users</button> */}
+                <div>
+                    {pages.map( p => {
+                        return <span className={this.props.currentPage === p && styles.pageNum}
+                        onClick = { () => { this.onPageChanged(p) } }>{p}</span>
+                    })}
+                </div>
                 {this.props.users.map((u) => (
                     <div key={u.id}>
                         <span>
