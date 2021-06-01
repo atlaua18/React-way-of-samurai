@@ -6,3 +6,13 @@
 .pageNum {
     font-weight: bold;
 }
+
+.lineOfNum {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.pageNum:not(:last-child) {
+    margin-right: 5px;
+    margin-left: 5px;
+}
