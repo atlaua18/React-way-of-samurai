@@ -9,6 +9,7 @@ import { Music } from "./components/Music/Music";
 import { Settings } from "./components/Settings/Settings";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import { Loader } from "./components/Loader/Loader";
 
 const App = () => {
     return (
@@ -27,6 +28,7 @@ const App = () => {
                     <Route path="/music" component={Music} />
                     <Route path="/settings" component={Settings} />
                 </div>
+                <Loader />
             </div>
         </BrowserRouter>
     );
