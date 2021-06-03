@@ -2,6 +2,7 @@ import React from "react";
 import { IUsersProps } from "../../interfaces/IUsersProps";
 import styles from "./users.module.css";
 import usersPhoto from "../../assets/images/ava.png";
+import { NavLink } from "react-router-dom";
 
 export let Users = (props: IUsersProps) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -33,6 +34,7 @@ export let Users = (props: IUsersProps) => {
                 <div key={u.id}>
                     <span>
                         <div>
+                            <NavLink to={"/profile/" + u.id}>
                             <img
                                 src={
                                     u.photos.small !== null
@@ -42,6 +44,7 @@ export let Users = (props: IUsersProps) => {
                                 className={styles.userPhoto}
                                 alt=""
                             />
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed ? (

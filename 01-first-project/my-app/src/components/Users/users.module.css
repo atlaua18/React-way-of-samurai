@@ -8,11 +8,13 @@
 }
 
 .lineOfNum {
+    display: flex;
+    flex-wrap: wrap;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
-.pageNum:not(:last-child) {
-    margin-right: 5px;
-    margin-left: 5px;
+.lineOfNum *:not(:last-child) {
+    padding-right: 5px;
+    padding-left: 5px;
 }

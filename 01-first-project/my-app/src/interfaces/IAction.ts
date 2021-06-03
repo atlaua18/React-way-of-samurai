@@ -3,4 +3,5 @@ export interface IAction {
     newText?: string; 
     messageText?: string;
     message?: string;
+    profile?: {};
 }

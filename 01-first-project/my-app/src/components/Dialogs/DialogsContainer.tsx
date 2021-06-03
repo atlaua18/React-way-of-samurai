@@ -1,7 +1,6 @@
 // import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IAction } from "../../interfaces/IAction";
 import { IAppState } from "../../interfaces/IAppState";
 import {
     sendMessageActionCreator,
@@ -15,7 +14,7 @@ let mapStateToProps = (state: IAppState) => {
     }
 };
 
-let mapDispatchToProps = (dispatch: Dispatch<IAction>) => {
+let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         updateNewMessageText: (text: string) => {
             dispatch(updateNewMessageTextActionCreator(text));
