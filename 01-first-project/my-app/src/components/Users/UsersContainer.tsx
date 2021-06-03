@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { IAppState } from "../../interfaces/IAppState";
-import { IUsers } from "../../interfaces/IUsers";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
 } from "../../redux/usersReducer";
 import axios from "axios";
 import { Users } from "./Users";
@@ -48,7 +46,7 @@ class UsersContainer extends React.Component<IUsersContainerProps> {
     render() {
         return (
             <>
-            {this.props.isFetching ? <Loader /> : null}
+                {this.props.isFetching ? <Loader /> : null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
@@ -73,27 +71,34 @@ let mapStateToProps = (state: IAppState) => {
     };
 };
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId)); // вызов action creator, а не сам action
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users: IUsers[]) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNum: number) => {
-            dispatch(setCurrentPageAC(pageNum));
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-    };
-};
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching,
+})(UsersContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+// let mapDispatchToProps = (dispatch: Dispatch) => {
+//     return {
+//         follow: (userId: number) => {
+//             dispatch(followAC(userId)); // вызов action creator, а не сам action
+//         },
+//         unfollow: (userId: number) => {
+//             dispatch(unfollowAC(userId));
+//         },
+//         setUsers: (users: IUsers[]) => {
+//             dispatch(setUsersAC(users));
+//         },
+//         setCurrentPage: (pageNum: number) => {
+//             dispatch(setCurrentPageAC(pageNum));
+//         },
+//         setTotalUsersCount: (totalCount: number) => {
+//             dispatch(setTotalUsersCountAC(totalCount));
+//         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(toggleIsFetchingAC(isFetching));
+//         }
+//     };
+// };
