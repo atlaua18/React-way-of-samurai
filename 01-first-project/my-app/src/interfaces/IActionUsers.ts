@@ -6,4 +6,5 @@ export interface IActionUsers {
     userId: number;
     currentPage: number;
     count: number;
+    isFetching: boolean;
 }

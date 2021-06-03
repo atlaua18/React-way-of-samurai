@@ -11,4 +11,6 @@ export interface IUsersContainerProps {
     setTotalUsersCount: (totalCount: number) => void;
     // onPageChanged:(pageNum: number) => void;
     setCurrentPage: (pageNum: number) => void;
+    isFetching: boolean;
+    toggleIsFetching: (isFetching: boolean) => void;
 }
