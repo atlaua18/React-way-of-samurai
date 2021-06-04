@@ -1,11 +1,25 @@
+a {
+    text-decoration: none;
+    color: black;
+    /* cursor: pointer; */
+}
+
+a.active {
+    color: cornflowerblue;
+}
+
+a:hover {
+    color: rgb(44, 81, 150);
+}
+
 .userInfo {
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
 
 .ava {
-    width: 100px;
-    height: 100px;
+    /* width: 100px; */
+    /* height: 100px; */
     padding: 15px;
 }
 
@@ -22,4 +36,8 @@
     height: 100%;
     object-fit: none;
     object-position: bottom;
+}
+
+.descriptionItem {
+    font-weight: bold;
 }

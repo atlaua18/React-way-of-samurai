@@ -4,7 +4,7 @@ import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 
 export const Profile = (props: {profile: IProfile | null}) => {
-debugger;
+
     return (
         <div>
             <ProfileInfo profile={props.profile}/>

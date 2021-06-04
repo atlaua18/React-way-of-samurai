@@ -67,5 +67,5 @@ export const updateNewPostTextActionCreator = (text: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text,
 });
-debugger;
+
 export const setUserProfile = (profile: IProfile) => ({type: SET_USER_PROFILE, profile});
