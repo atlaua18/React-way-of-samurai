@@ -3,11 +3,11 @@ import { Loader } from "../../Loader/Loader";
 import styles from "./profileinfo.module.css";
 
 export const ProfileInfo = (props: { profile: IProfile | null }) => {
-    debugger;
+    
     if (!props.profile) {
         return <Loader />;
     }
-    debugger;
+
     return (
         <div>
             <div className={styles.ProfileBanner}>
