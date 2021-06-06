@@ -13,7 +13,7 @@ let initialState = {
 export const authReducer = (state: IAuthState = initialState, action: IAuthAction) => {
     switch(action.type) {
         case SET_USER_DATA:
-            debugger;
+            
             return {
                 ...state,
                 ...action.data,

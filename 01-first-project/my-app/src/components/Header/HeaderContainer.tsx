@@ -8,7 +8,7 @@ import Header from "./Header";
 
 export class HeaderContainer extends React.Component<IHeaderContainerProps, {}> {
     componentDidMount() {
-        debugger;
+        
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
                 withCredentials: true,
