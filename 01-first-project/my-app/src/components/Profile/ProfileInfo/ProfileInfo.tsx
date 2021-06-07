@@ -1,5 +1,6 @@
 import { IProfile } from "../../../interfaces/IProfile";
 import { Loader } from "../../Loader/Loader";
+import usersPhoto from "../../../assets/images/ava.png";
 import styles from "./profileinfo.module.css";
 
 export const ProfileInfo = (props: { profile: IProfile | null }) => {
@@ -19,8 +20,7 @@ export const ProfileInfo = (props: { profile: IProfile | null }) => {
             <div className={styles.userInfo}>
                 <img
                     className={styles.ava}
-                    // src="https://cdn.dribbble.com/users/2131993/screenshots/15628402/media/7bb0d27e44d8c2eff47276ae86bfd6a3.png?compress=1&resize=1000x750"
-                    src={props.profile.photos?.large}
+                    src={props.profile.photos?.large !== null ? props.profile.photos?.large : usersPhoto}
                     alt=""
                 ></img>
                 <div className={styles.descriptionBlock}>
