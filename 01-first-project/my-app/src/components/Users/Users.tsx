@@ -49,26 +49,30 @@ export let Users = (props: IUsersProps) => {
                         </div>
                         <div>
                             {u.followed ? (
-                                <button
+                                <button disabled={props.followingProgress.some(id => id === u.id)}
                                     onClick={() => {
+                                        props.toggleFollowingProgress(true, u.id);
                                         followAPI.unfollowUser(u.id)
                                         .then(data => {
                                             if(data.resultCode === 0) {
                                                 props.unfollow(u.id);
-                                            }
+                                            };
+                                            props.toggleFollowingProgress(false, u.id);
                                         });
                                     }}
                                 >
                                     Unfollow
                                 </button>
                             ) : (
-                                <button
+                                <button disabled={props.followingProgress.some(id => id === u.id)}
                                     onClick={() => {
+                                        props.toggleFollowingProgress(true, u.id);
                                         followAPI.followUser(u.id)
                                         .then(data => {
                                             if(data.resultCode === 0) {
                                                 props.follow(u.id);
-                                            }
+                                            };
+                                            props.toggleFollowingProgress(false, u.id);
                                         });
                                     }}
                                 >
