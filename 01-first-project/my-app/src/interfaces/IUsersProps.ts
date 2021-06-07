@@ -11,4 +11,8 @@ export interface IUsersProps {
     // setCurrentPage: (pageNum: number) => void;
     // setTotalUsersCount: (totalCount: number) => void;
     onPageChanged:(pageNum: number) => void;
+    followAPI?: {
+        unfollowUser(id: number): Promise<any>;
+        followUser(id: number): Promise<any>;
+    };
 }

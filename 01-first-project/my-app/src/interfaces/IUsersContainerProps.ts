@@ -13,4 +13,8 @@ export interface IUsersContainerProps {
     setCurrentPage: (pageNum: number) => void;
     isFetching: boolean;
     toggleIsFetching: (isFetching: boolean) => void;
+    followAPI?: {
+        unfollowUser(id: number): Promise<any>;
+        followUser(id: number): Promise<any>;
+    };
 }

@@ -9,41 +9,31 @@ import {
     toggleIsFetching,
     unfollow,
 } from "../../redux/usersReducer";
-import axios from "axios";
 import { Users } from "./Users";
 import { IUsersContainerProps } from "../../interfaces/IUsersContainerProps";
 import { Loader } from "../Loader/Loader";
+import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component<IUsersContainerProps> {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                    withCredentials: true,
-                }
-            )
-            .then((response) => {
+               
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
                 //{params: {count: 40}}
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             });
     }
 
     onPageChanged = (pageNum: number) => {
         this.props.setCurrentPage(pageNum);
         this.props.toggleIsFetching(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`, {
-                    withCredentials: true,
-                }
-            )
-            .then((response) => {
+
+        usersAPI.getUsers(pageNum, this.props.pageSize).then(data => {
                 //{params: {count: 40}}
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(response.data.items);
+                this.props.setUsers(data.items);
             });
     };
 
@@ -59,6 +49,7 @@ class UsersContainer extends React.Component<IUsersContainerProps> {
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
+                    followAPI={this.props.followAPI}
                 />
             </>
         );
