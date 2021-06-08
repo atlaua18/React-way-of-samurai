@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+import { usersAPI } from "../api/api";
 import { IActionUsers } from "../interfaces/IActionUsers";
 import { IUsers } from "../interfaces/IUsers";
 import { IUsersPage } from "../interfaces/IUsersPage";
@@ -72,7 +74,7 @@ export const usersReducer = (
             };
         }
 
-        case SET_TOTAL_USERS_COUNT: 
+        case SET_TOTAL_USERS_COUNT:
             return {
                 ...state,
                 totalUsersCount: action.count,
@@ -83,13 +85,15 @@ export const usersReducer = (
                 ...state,
                 isFetching: action.isFetching,
             };
-        case TOGGLE_IS_FOLLOWING_PROGRESS: 
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id !== action.userId) //возвращает копию массива, поэтому не нужна деструктуризация: [...state.followingInProgress, action.userId]  
-            }    
+                    : state.followingInProgress.filter(
+                          (id) => id !== action.userId
+                      ), //возвращает копию массива, поэтому не нужна деструктуризация: [...state.followingInProgress, action.userId]
+            };
 
         default:
             return state;
@@ -107,12 +111,31 @@ export const setTotalUsersCount = (totalCount: number) => ({
     type: SET_TOTAL_USERS_COUNT,
     count: totalCount,
 });
-export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
+export const toggleIsFetching = (isFetching: boolean) => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching,
+});
+export const toggleFollowingProgress = (
+    isFetching: boolean,
+    userId: number
+) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching,
     userId,
 });
+
+//thunk
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<any>) => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        });
+    };
+};
 
 // {
 //     id: 1,
