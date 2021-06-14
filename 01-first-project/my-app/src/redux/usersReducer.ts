@@ -126,15 +126,16 @@ export const toggleFollowingProgress = (
 
 //thunk
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch<any>) => {
-        dispatch(toggleIsFetching(true));
-
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
+    return (
+        (dispatch: Dispatch<any>) => {
+            dispatch(toggleIsFetching(true));
+    
+            usersAPI.getUsers(currentPage, pageSize).then((data) => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            });
         });
-    };
 };
 
 // {

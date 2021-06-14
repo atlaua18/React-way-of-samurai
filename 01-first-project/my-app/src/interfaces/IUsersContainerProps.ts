@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { IUsers } from "./IUsers";
 
 export interface IUsersContainerProps {
@@ -19,4 +20,6 @@ export interface IUsersContainerProps {
     };
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void;
     followingProgress: [];
+    // getUsersThunkCreator: (currentPage: number, pageSize: number) => (dispatch: Dispatch<any>) => void;
+    getUsersThunkCreator: any;
 }
