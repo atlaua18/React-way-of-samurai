@@ -8,18 +8,17 @@ export interface IUsersContainerProps {
     users: IUsers[];
     follow: (userId: number) => void;
     unfollow: (userId: number) => void;
-    setUsers: (users: IUsers[]) => void;
-    setTotalUsersCount: (totalCount: number) => void;
+    // setUsers: (users: IUsers[]) => void;
+    // setTotalUsersCount: (totalCount: number) => void;
     // onPageChanged:(pageNum: number) => void;
     setCurrentPage: (pageNum: number) => void;
     isFetching: boolean;
-    toggleIsFetching: (isFetching: boolean) => void;
-    followAPI?: {
-        unfollowUser(id: number): Promise<any>;
-        followUser(id: number): Promise<any>;
-    };
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void;
+    // toggleIsFetching: (isFetching: boolean) => void;
+    // followAPI?: {
+    //     unfollowUser(id: number): Promise<any>;
+    //     followUser(id: number): Promise<any>;
+    // };
+    // toggleFollowingProgress: (isFetching: boolean, userId: number) => void;
     followingProgress: [];
-    // getUsersThunkCreator: (currentPage: number, pageSize: number) => (dispatch: Dispatch<any>) => void;
-    getUsersThunkCreator: any;
+    getUsers: any;
 }

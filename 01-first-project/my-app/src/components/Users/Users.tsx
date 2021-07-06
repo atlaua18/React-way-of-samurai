@@ -3,7 +3,6 @@ import { IUsersProps } from "../../interfaces/IUsersProps";
 import styles from "./users.module.css";
 import usersPhoto from "../../assets/images/ava.png";
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../api/api";
 
 export let Users = (props: IUsersProps) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -36,44 +35,36 @@ export let Users = (props: IUsersProps) => {
                     <span>
                         <div>
                             <NavLink to={"/profile/" + u.id}>
-                            <img
-                                src={
-                                    u.photos.small !== null
-                                        ? u.photos.small
-                                        : usersPhoto
-                                }
-                                className={styles.userPhoto}
-                                alt=""
-                            />
+                                <img
+                                    src={
+                                        u.photos.small !== null
+                                            ? u.photos.small
+                                            : usersPhoto
+                                    }
+                                    className={styles.userPhoto}
+                                    alt=""
+                                />
                             </NavLink>
                         </div>
                         <div>
                             {u.followed ? (
-                                <button disabled={props.followingProgress.some(id => id === u.id)}
+                                <button
+                                    disabled={props.followingProgress.some(
+                                        (id) => id === u.id
+                                    )}
                                     onClick={() => {
-                                        props.toggleFollowingProgress(true, u.id);
-                                        followAPI.unfollowUser(u.id)
-                                        .then(data => {
-                                            if(data.resultCode === 0) {
-                                                props.unfollow(u.id);
-                                            };
-                                            props.toggleFollowingProgress(false, u.id);
-                                        });
+                                        props.unfollow(u.id);
                                     }}
                                 >
                                     Unfollow
                                 </button>
                             ) : (
-                                <button disabled={props.followingProgress.some(id => id === u.id)}
+                                <button
+                                    disabled={props.followingProgress.some(
+                                        (id) => id === u.id
+                                    )}
                                     onClick={() => {
-                                        props.toggleFollowingProgress(true, u.id);
-                                        followAPI.followUser(u.id)
-                                        .then(data => {
-                                            if(data.resultCode === 0) {
-                                                props.follow(u.id);
-                                            };
-                                            props.toggleFollowingProgress(false, u.id);
-                                        });
+                                        props.follow(u.id);
                                     }}
                                 >
                                     Follow
@@ -96,3 +87,40 @@ export let Users = (props: IUsersProps) => {
         </div>
     );
 };
+
+// были запросы, теперь в санке в usersReducer
+/* <div>
+                                {u.followed ? (
+                                    <button disabled={props.followingProgress.some(id => id === u.id)}
+                                        onClick={() => {
+                                            props.unfollow(u.id);
+                                            // props.toggleFollowingProgress(true, u.id);
+                                            // followAPI.unfollowUser(u.id)
+                                            // .then(data => {
+                                            //     if(data.resultCode === 0) {
+                                            //         props.unfollow(u.id);
+                                            //     };
+                                            //     props.toggleFollowingProgress(false, u.id);
+                                            // });
+                                        }}
+                                    >
+                                        Unfollow
+                                    </button>
+                                ) : (
+                                    <button disabled={props.followingProgress.some(id => id === u.id)}
+                                        onClick={() => {
+                                            props.follow(u.id);
+                                            // props.toggleFollowingProgress(true, u.id);
+                                            // followAPI.followUser(u.id)
+                                            // .then(data => {
+                                            //     if(data.resultCode === 0) {
+                                            //         props.follow(u.id);
+                                            //     };
+                                            //     props.toggleFollowingProgress(false, u.id);
+                                            // });
+                                        }}
+                                    >
+                                        Follow
+                                    </button>
+                                )}
+                            </div> */

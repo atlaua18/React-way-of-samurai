@@ -1,3 +1,5 @@
+import { Dispatch } from "redux";
+import { profileAPI } from "../api/api";
 import { IAction } from "../interfaces/IAction";
 import { IPost } from "../interfaces/IPost";
 import { IProfile } from "../interfaces/IProfile";
@@ -69,3 +71,12 @@ export const updateNewPostTextActionCreator = (text: string) => ({
 });
 
 export const setUserProfile = (profile: IProfile) => ({type: SET_USER_PROFILE, profile});
+
+//thunk
+export const getProfile = (userId: number) => {
+    return (dispatch: Dispatch<any>) => {
+        profileAPI.getProfile(userId).then((data) => {
+            dispatch(setUserProfile(data));
+        })
+    };
+};

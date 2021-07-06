@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+import { authMeAPI } from "../api/api";
 import { IAuthAction } from "../interfaces/IAuthAction";
 import { IAuthState } from "../interfaces/IAuthState";
 
@@ -32,5 +34,17 @@ export const setAuthUserData = (id: number, email: string, login: string) => {
             email,
             login,
         }
+    }
+};
+
+// thunk
+export const getAuthUserData = () => {
+    return (dispatch: Dispatch<any>) => {
+        authMeAPI.getAuthUserData().then((data) => {
+            if (data.resultCode === 0) {
+                let { id, email, login } = data.data;
+                dispatch(setAuthUserData(id, email, login));
+            }
+        });
     }
 };

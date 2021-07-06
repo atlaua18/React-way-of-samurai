@@ -3,5 +3,9 @@ export interface IHeaderContainerProps {
     email?: string | null;
     login?: string | null; 
     isAuth?: boolean;
-    setAuthUserData: (id: number, email: string, login: string) => void;
+    // setAuthUserData: (id: number, email: string, login: string) => void;
+    // authMeAPI?: {
+    //     getAuthUserData(): Promise<any>;
+    // }
+    getAuthUserData: any;
 }
