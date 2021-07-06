@@ -13,13 +13,6 @@ class ProfileContainer extends React.Component<IProfileContainerProps & RouteCom
         let userId = this.props.match.params.userId;
 
         this.props.getProfile(userId);
-        // axios
-        //     .get(
-        //         `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-        //     )
-        //     .then((response) => {
-        //         this.props.setUserProfile(response.data)
-        //     });
     }
 
     render() {

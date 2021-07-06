@@ -38,13 +38,11 @@ export const setAuthUserData = (id: number, email: string, login: string) => {
 };
 
 // thunk
-export const getAuthUserData = () => {
-    return (dispatch: Dispatch<any>) => {
-        authMeAPI.getAuthUserData().then((data) => {
+export const getAuthUserData = () => (dispatch: Dispatch<any>) => {
+        authMeAPI.me().then((data) => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
                 dispatch(setAuthUserData(id, email, login));
             }
         });
-    }
 };
