@@ -1,5 +1,5 @@
-// import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
     sendMessageActionCreator,
     updateNewMessageTextActionCreator,
@@ -10,7 +10,7 @@ import { Dialogs } from "./Dialogs";
 let mapStateToProps = (state) => {
     return {
         messagePage: state.messagePage,
-    }
+    };
 };
 
 let mapDispatchToProps = (dispatch) => {
@@ -21,21 +21,24 @@ let mapDispatchToProps = (dispatch) => {
         sendMessage: () => {
             dispatch(sendMessageActionCreator());
         },
-    }
+    };
 };
+// compose(
+//     connect(mapStateToProps, mapDispatchToProps),
+//     withAuthRedirect
+// )(Dialogs);
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
+export const DialogsContainer = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);
 
-// let AuthRedirectComponent = (props: any) => {
-//     if (!props.isAuth) {
-//         return <Redirect to = "/login" />
-//     };
-//     return <Dialogs {...props}/>
-// }
+// let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-
+// export const DialogsContainer = connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(AuthRedirectComponent);
 
 // export const DialogsContainer = () => {
 //     return (
