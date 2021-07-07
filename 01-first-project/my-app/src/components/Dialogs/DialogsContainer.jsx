@@ -1,22 +1,21 @@
 // import React from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { IAppState } from "../../interfaces/IAppState";
 import {
     sendMessageActionCreator,
     updateNewMessageTextActionCreator,
 } from "../../redux/messageReducer";
+import { withAuthRedirect } from "../hoc/withAuthRedirect";
 import { Dialogs } from "./Dialogs";
 
-let mapStateToProps = (state: IAppState) => {
+let mapStateToProps = (state) => {
     return {
         messagePage: state.messagePage,
     }
 };
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
+let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageText: (text: string) => {
+        updateNewMessageText: (text) => {
             dispatch(updateNewMessageTextActionCreator(text));
         },
         sendMessage: () => {
@@ -25,7 +24,16 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
     }
 };
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+// let AuthRedirectComponent = (props: any) => {
+//     if (!props.isAuth) {
+//         return <Redirect to = "/login" />
+//     };
+//     return <Dialogs {...props}/>
+// }
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 
 

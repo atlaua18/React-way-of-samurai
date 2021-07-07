@@ -1,9 +1,8 @@
-import { IProfile } from "../../../interfaces/IProfile";
 import { Loader } from "../../Loader/Loader";
 import usersPhoto from "../../../assets/images/ava.png";
 import styles from "./profileinfo.module.css";
 
-export const ProfileInfo = (props: { profile: IProfile | null }) => {
+export const ProfileInfo = (props) => {
     
     if (!props.profile) {
         return <Loader />;

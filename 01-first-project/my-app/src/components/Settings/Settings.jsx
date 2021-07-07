@@ -1,4 +1,4 @@
-export const Settings = (props: {}) => {
+export const Settings = () => {
     return (
         <div>
             Settings

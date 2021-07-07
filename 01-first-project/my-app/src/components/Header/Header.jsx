@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { IHeaderProps } from '../../interfaces/IHeaderProps';
 import styles from "./header.module.css"
 
-const Header = (props: IHeaderProps ) => {
+const Header = (props ) => {
     return (
         <header className={styles.header}>
         <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt=""></img>

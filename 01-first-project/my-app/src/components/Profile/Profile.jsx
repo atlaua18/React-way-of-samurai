@@ -1,9 +1,8 @@
 import React from "react";
-import { IProfile } from "../../interfaces/IProfile";
 import { MyPostsContainer } from "./MyPosts/MyPostsContainer";
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 
-export const Profile = (props: {profile: IProfile | null}) => {
+export const Profile = (props) => {
 
     return (
         <div>

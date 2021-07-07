@@ -1,9 +1,4 @@
-import { Dispatch } from "redux";
 import { profileAPI } from "../api/api";
-import { IAction } from "../interfaces/IAction";
-import { IPost } from "../interfaces/IPost";
-import { IProfile } from "../interfaces/IProfile";
-import { IProfilePage } from "../interfaces/IProfilePage";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -18,10 +13,7 @@ let initialState = {
     profile: null,
 };
 
-export const profileReducer = (
-    state: IProfilePage = initialState,
-    action: IAction
-) => {
+export const profileReducer = (state = initialState, action) => {
     function getId() {
         let id = 0;
         for (let i = state.postsData.length - 1; i > 0; i++) {
@@ -34,7 +26,7 @@ export const profileReducer = (
 
     switch (action.type) {
         case ADD_POST: {
-            let newPost: IPost = {
+            let newPost = {
                 id: getId(),
                 message: state.newPostText,
                 likesCount: 0,
@@ -44,9 +36,9 @@ export const profileReducer = (
                 postsData: [...state.postsData, newPost],
                 newPostText: "",
             };
-        };
+        }
 
-        case UPDATE_NEW_POST_TEXT: 
+        case UPDATE_NEW_POST_TEXT:
             return {
                 ...state,
                 newPostText: action.newText,
@@ -65,18 +57,21 @@ export const profileReducer = (
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
 
-export const updateNewPostTextActionCreator = (text: string) => ({
+export const updateNewPostTextActionCreator = (text) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text,
 });
 
-export const setUserProfile = (profile: IProfile) => ({type: SET_USER_PROFILE, profile});
+export const setUserProfile = (profile) => ({
+    type: SET_USER_PROFILE,
+    profile,
+});
 
 //thunk
-export const getProfile = (userId: number) => {
-    return (dispatch: Dispatch<any>) => {
+export const getProfile = (userId) => {
+    return (dispatch) => {
         profileAPI.getProfile(userId).then((data) => {
             dispatch(setUserProfile(data));
-        })
+        });
     };
 };

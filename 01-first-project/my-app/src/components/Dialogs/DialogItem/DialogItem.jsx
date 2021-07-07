@@ -2,11 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./dialogitem.module.css";
 
-export const DialogItem = (props: {
-    Id: number; 
-    N: string; 
-    AVA: string;
-}) => {
+export const DialogItem = (props) => {
     let path = "/dialogs/" + props.Id;
     return (
         <div className={styles.dialog}>

@@ -6,4 +6,5 @@ export interface IDialogsProps {
     updateNewMessageText: (text: string) => void;
     sendMessage: () => void;
     // dispatch: (action: IAction) => void;
+    isAuth: boolean;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IAppState } from "../../interfaces/IAppState";
 import {
     follow,
     setCurrentPage,
@@ -8,15 +7,14 @@ import {
     getUsers,
 } from "../../redux/usersReducer";
 import { Users } from "./Users";
-import { IUsersContainerProps } from "../../interfaces/IUsersContainerProps";
 import { Loader } from "../Loader/Loader";
 
-export class UsersContainer extends React.Component<IUsersContainerProps & {}> {
+export class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     };
 
-    onPageChanged = (pageNum: number) => {
+    onPageChanged = (pageNum) => {
         this.props.getUsers(pageNum, this.props.pageSize);
     };
 
@@ -39,7 +37,7 @@ export class UsersContainer extends React.Component<IUsersContainerProps & {}> {
     }
 }
 
-let mapStateToProps = (state: IAppState) => {
+let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

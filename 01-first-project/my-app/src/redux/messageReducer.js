@@ -1,7 +1,3 @@
-import { IAction } from "../interfaces/IAction";
-import { IMessagePage } from "../interfaces/IMessagePage";
-import { IMessagesData } from "../interfaces/IMessagesData";
-
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
@@ -32,10 +28,7 @@ let initialState = {
     newMessageText: "",
 };
 
-export const messageReducer = (
-    state: IMessagePage = initialState,
-    action: IAction
-) => {
+export const messageReducer = (state = initialState, action) => {
     function getId() {
         let id = 0;
         for (let i = state.messagesData.length - 1; i > 0; i++) {
@@ -48,7 +41,7 @@ export const messageReducer = (
 
     switch (action.type) {
         case SEND_MESSAGE:
-            let newMessage: IMessagesData = {
+            let newMessage = {
                 id: getId(),
                 message: state.newMessageText,
             };
@@ -69,7 +62,7 @@ export const messageReducer = (
 
 export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
 
-export const updateNewMessageTextActionCreator = (text: string) => ({
+export const updateNewMessageTextActionCreator = (text) => ({
     type: UPDATE_NEW_MESSAGE_TEXT,
     messageText: text,
 });

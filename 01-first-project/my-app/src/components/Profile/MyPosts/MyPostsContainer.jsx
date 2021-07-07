@@ -1,24 +1,20 @@
-// import React from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { IAction } from "../../../interfaces/IAction";
-import { IAppState } from "../../../interfaces/IAppState";
 import {
     addPostActionCreator,
     updateNewPostTextActionCreator,
 } from "../../../redux/profileReducer";
 import { MyPosts } from "./MyPosts";
 
-let mapStateToProps = (state: IAppState) => {
+let mapStateToProps = (state) => {
     return {
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText,
     }
 };
 
-let mapDispatchToProps = (dispatch: Dispatch<IAction>) => {
+let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewPostText: (text: string) => {
+        updateNewPostText: (text) => {
             dispatch(updateNewPostTextActionCreator(text));
         },
         addPost: () => {

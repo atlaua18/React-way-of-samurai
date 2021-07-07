@@ -1,7 +1,4 @@
-import { Dispatch } from "react";
 import { authMeAPI } from "../api/api";
-import { IAuthAction } from "../interfaces/IAuthAction";
-import { IAuthState } from "../interfaces/IAuthState";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
@@ -12,7 +9,7 @@ let initialState = {
     isAuth: false,
 };
 
-export const authReducer = (state: IAuthState = initialState, action: IAuthAction) => {
+export const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_USER_DATA:
             
@@ -26,7 +23,7 @@ export const authReducer = (state: IAuthState = initialState, action: IAuthActio
     }
 };
 
-export const setAuthUserData = (id: number, email: string, login: string) => {
+export const setAuthUserData = (id, email, login) => {
     return {
         type: SET_USER_DATA,
         data: {
@@ -38,7 +35,7 @@ export const setAuthUserData = (id: number, email: string, login: string) => {
 };
 
 // thunk
-export const getAuthUserData = () => (dispatch: Dispatch<any>) => {
+export const getAuthUserData = () => (dispatch) => {
         authMeAPI.me().then((data) => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;

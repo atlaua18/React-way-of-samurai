@@ -1,14 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { IAppState } from "../../interfaces/IAppState";
-import { IHeaderContainerProps } from "../../interfaces/IHeaderContainerProps";
 import { getAuthUserData } from "../../redux/authReducer";
 import Header from "./Header";
 
-export class HeaderContainer extends React.Component<
-    IHeaderContainerProps,
-    {}
-> {
+export class HeaderContainer extends React.Component {
     componentDidMount() {
         this.props.getAuthUserData();
     }
@@ -18,7 +13,7 @@ export class HeaderContainer extends React.Component<
     }
 }
 
-const mapStateToProps = (state: IAppState) => ({
+const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
 });

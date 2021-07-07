@@ -5,4 +5,5 @@ export interface IProfileContainerProps {
     // setUserProfile: (profile: IProfile) => void;
     // userId: number;
     getProfile: any;
+    isAuth: boolean;
 }

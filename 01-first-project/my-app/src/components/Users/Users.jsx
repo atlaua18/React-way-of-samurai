@@ -1,10 +1,9 @@
 import React from "react";
-import { IUsersProps } from "../../interfaces/IUsersProps";
 import styles from "./users.module.css";
 import usersPhoto from "../../assets/images/ava.png";
 import { NavLink } from "react-router-dom";
 
-export let Users = (props: IUsersProps) => {
+export let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];

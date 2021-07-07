@@ -1,4 +1,4 @@
-export const News = (props: {}) => {
+export const News = () => {
     return (
         <div>
             News

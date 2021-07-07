@@ -1,10 +1,10 @@
 import React from "react";
-import { IDialogsProps } from "../../interfaces/IDialogsProps";
+// import { Redirect } from "react-router-dom";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
 
-export const Dialogs = (props: IDialogsProps) => {
+export const Dialogs = (props) => {
 
     let state = props.messagePage;
 
@@ -22,11 +22,15 @@ export const Dialogs = (props: IDialogsProps) => {
         props.sendMessage();
     }
 
-    let onMessageChange = (e: any) => {
-        let text: string = e.target.value;
+    let onMessageChange = (e) => {
+        let text = e.target.value;
         props.updateNewMessageText(text);
         // props.store.dispatch(updateNewMessageTextActionCreator(text));
     }
+
+    // if (!props.isAuth) {
+    //     return <Redirect to = "/login" />
+    // };
 
     return (
         <div className={styles.dialogs}>

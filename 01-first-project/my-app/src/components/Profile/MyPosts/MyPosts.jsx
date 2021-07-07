@@ -1,9 +1,8 @@
 import React from "react";
-import { IMyPostsProps } from "../../../interfaces/IMyPostsProps";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
 
-export const MyPosts = (props: IMyPostsProps) => {
+export const MyPosts = (props) => {
 
     let postsElements = props.postsData.map((p) => (
         <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
@@ -13,8 +12,8 @@ export const MyPosts = (props: IMyPostsProps) => {
         props.addPost();
     };
 
-    let onPostChange = (e: any) => {
-        let text:string = e.target.value;
+    let onPostChange = (e) => {
+        let text = e.target.value;
         props.updateNewPostText(text);
     };
 
