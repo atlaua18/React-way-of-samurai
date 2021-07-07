@@ -1,6 +1,7 @@
 import { Loader } from "../../Loader/Loader";
 import usersPhoto from "../../../assets/images/ava.png";
 import styles from "./profileinfo.module.css";
+import { ProfileStatus } from "./ProfileStatus/ProfileStatus";
 
 export const ProfileInfo = (props) => {
     
@@ -128,6 +129,7 @@ export const ProfileInfo = (props) => {
                     </div>
                 </div>
             </div>
+            <ProfileStatus status={"Hello"}/>
         </div>
     );
 };
