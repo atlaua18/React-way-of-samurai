@@ -1,10 +1,14 @@
-import { LoginForm } from "./LoginForm/LoginForm";
+import { LoginReduxForm } from "./LoginForm/LoginForm";
 
-export const Login = () => {
+export const Login = (props) => {
+    const onSubmit = (formData) => {
+        console.log(formData)
+    };
+
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm />
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };

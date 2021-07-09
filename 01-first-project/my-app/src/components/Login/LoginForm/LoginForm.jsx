@@ -1,14 +1,19 @@
-export const LoginForm = () => {
+import { Field, reduxForm } from "redux-form";
+
+export const LoginForm = (props) => {
     return (
-        <form>
+        <form onSubmit={props.handleSubmit}>
             <div>
-                <input placeholder={"Login"} />
+                <Field placeholder={"Login"} name={"login"} component={"input"}/>
+                {/* <input placeholder={"Login"} /> */}
             </div>
             <div>
-                <input placeholder={"Password"} />
+                <Field placeholder={"Password"} name={"password"} component={"input"}/>
+                {/* <input placeholder={"Password"} /> */}
             </div>
             <div>
-                <input type={"checkbox"} /> Remember me
+                <Field component={"input"} name={"rememberme"} type={"checkbox"} /> Remember me
+                {/* <input type={"checkbox"} /> Remember me */}
             </div>
             <div>
                 <button>Login</button>
@@ -16,3 +21,7 @@ export const LoginForm = () => {
         </form>
     );
 };
+
+export const LoginReduxForm = reduxForm({
+    form: "login" // это form не связано с тем, что в reduxStore
+})(LoginForm)
