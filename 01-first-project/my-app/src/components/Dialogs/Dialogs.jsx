@@ -3,6 +3,7 @@ import React from "react";
 import { DialogItem } from "./DialogItem/DialogItem";
 import styles from "./dialogs.module.css";
 import { Message } from "./Message/Message";
+import { MessageReduxForm } from "./MessageForm/MessageFrom";
 
 export const Dialogs = (props) => {
 
@@ -18,34 +19,16 @@ export const Dialogs = (props) => {
         <Message message={m.message} key={m.id}/>
     ));
    
-    let onSendMessage = () => {
-        props.sendMessage();
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody)
     }
-
-    let onMessageChange = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageText(text);
-        // props.store.dispatch(updateNewMessageTextActionCreator(text));
-    }
-
-    // if (!props.isAuth) {
-    //     return <Redirect to = "/login" />
-    // };
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>{dialogElements}</div> {/*тут отрисовка ава + имя*/}
             <div className={styles.messages}>
                 {messageElements} {/*тут отрисовка сообщений*/}
-                <div className={styles.createMessage}>
-                    <textarea
-                    placeholder="Message"
-                    onChange={onMessageChange} 
-                    value={state.newMessageText} 
-                    className={styles.typeMessage}>
-                    </textarea>
-                    <button onClick={onSendMessage} className={styles.sendMessage}>Send</button>
-                </div>
+                <MessageReduxForm onSubmit={addNewMessage}/>
             </div>
         </div>
     );
