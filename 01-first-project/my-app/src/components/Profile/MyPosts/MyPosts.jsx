@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./myposts.module.css";
 import { Post } from "./Post/Post";
+import { AddNewPostReduxForm } from "./PostForm/PostForm";
 
 export const MyPosts = (props) => {
 
@@ -8,19 +9,20 @@ export const MyPosts = (props) => {
         <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
     ));
 
-    let onAddPost = () => {
-        props.addPost();
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText);
     };
 
-    let onPostChange = (e) => {
-        let text = e.target.value;
-        props.updateNewPostText(text);
-    };
+    // let onPostChange = (e) => {
+    //     let text = e.target.value;
+    //     props.updateNewPostText(text);
+    // };
 
     return (
         <div className={styles.postsBlock}>
             <h3>My posts</h3>
-            <div>
+            <AddNewPostReduxForm onSubmit={onAddPost}/>
+            {/* <form>
                 <div>
                     <textarea 
                     placeholder="Post"
@@ -30,7 +32,7 @@ export const MyPosts = (props) => {
                 <div>
                     <button onClick={onAddPost}>Add post</button>
                 </div>
-            </div>
+            </form> */}
             <div className={styles.posts}>
                 {postsElements}
             </div>
