@@ -1,4 +1,4 @@
-import { Loader } from "../../Loader/Loader";
+import { Loader } from "../../Common/Loader/Loader";
 import usersPhoto from "../../../assets/images/ava.png";
 import styles from "./profileinfo.module.css";
 import { ProfileStatus } from "./ProfileStatus/ProfileStatus";

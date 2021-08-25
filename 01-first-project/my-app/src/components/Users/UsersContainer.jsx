@@ -7,7 +7,7 @@ import {
     getUsers,
 } from "../../redux/usersReducer";
 import { Users } from "./Users";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "../Common/Loader/Loader";
 import { compose } from "redux";
 import { withAuthRedirect } from "../hoc/withAuthRedirect";
 
