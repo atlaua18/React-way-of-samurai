@@ -6,11 +6,11 @@ export const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Login"} name={"login"} component={Input} validate={[required]}/>
+                <Field placeholder={"Email"} name={"email"} component={Input} validate={[required]}/>
                 {/* <input placeholder={"Login"} /> */}
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]}/>
+                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]} type={"password"}/>
                 {/* <input placeholder={"Password"} /> */}
             </div>
             <div>
